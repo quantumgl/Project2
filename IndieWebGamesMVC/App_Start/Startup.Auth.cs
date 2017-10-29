@@ -54,15 +54,15 @@ namespace IndieWebGamesMVC
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "1996376797314946",
+               appSecret: "caa50eecf12cfda693cd3d8b8ac61971");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "39263700925-sv513l4oivas7cn7evl4eer9l0srtn06.apps.googleusercontent.com",
+                ClientSecret = "6E4OZf-A2QfTrM_f04uDwHsA"
+            });
         }
     }
 }
