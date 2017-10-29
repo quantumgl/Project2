@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using IndieWebGamesAPI.Models;
+using System.ComponentModel;
 
 namespace IndieWebGamesAPI.Controllers
 {
@@ -17,6 +18,15 @@ namespace IndieWebGamesAPI.Controllers
         private applicationDbContext context;
         // api/Users
 
+        public UserStatus GetCurrentUsers()
+        {
+            
+            DateTime updated = DateTime.Now.Add(new TimeSpan(0, 0, -2));
+         
+            var users = loggedinusers.Find(current => (current.LastPing <= DateTime.Now) && (current.LastPing > updated));
+
+            return (users);
+        }
         // api/Users/{UserName}
         public void GetPingerUserName(string UserName, UserStatus users)
         {
