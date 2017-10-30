@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Indie Web Games, IndieWebGames, Online Games, Games, Gaming" />
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -34,9 +35,13 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
+       
         <footer>
-            <p>&copy; @DateTime.Now.Year - Indie Web Games</p>
+            <div class="navbar navbar-inverse navbar-fixed-bottom">
+                <div class="container">
+                    <p class="navbar-text pull-left">&copy; @DateTime.Now.Year - Indie Web Games</p>
+                </div>
+            </div>
         </footer>
     </div>
 

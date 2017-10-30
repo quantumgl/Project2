@@ -199,33 +199,6 @@ h6 {
         background: rgba(91, 157, 214, 0.76);
     }
 
-.footer {
-    text-align: center;
-    padding-top: 75px;
-    letter-spacing: 1.6px;
-    line-height: 22px;
-}
-
-    .footer p {
-        font-size: 16px;
-        color: #fff;
-        margin: 0px;
-        letter-spacing: 1.4px;
-    }
-
-        .footer p a {
-            color: #D65B88;
-            font-weight: bold;
-            -webkit-transition-duration: 0.8s;
-            transition-duration: 0.8s;
-        }
-
-            .footer p a:hover {
-                color: #51cbe1;
-                -webkit-transition-duration: 0.8s;
-                transition-duration: 0.8s;
-            }
-
 .navbar-inverse {
     background: none;
     border-color: transparent;
