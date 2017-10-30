@@ -7,12 +7,12 @@
 <div class="row">
     <div class="col-md-7">
         <div class="padding-all">
-                <h1><img src="./images/5.png" alt=""> @ViewBag.Title</h1>
+                <h2> @ViewBag.Title</h2>
             <br />
             <div class="design-w3l">
                 <div class="mail-form-agile">
                     <form action="#" method="post">
-                        <input type="text" name="name" placeholder="Username  or  email..." required />
+                        <input type="text" name="name" placeholder="Username" required />
                         <input type="password" name="password" class="padding" placeholder="Password" required />
                         <input type="submit" value="submit">
                     </form>
@@ -25,7 +25,7 @@
     <br />
     <div class="col-md-5">
         <div class="padding-all">
-            <h1><img src="./images/5.png" alt=""> Login With:</h1>
+            <h2>Login With:</h2>
             <br />
             <div class="mail-form-agile">
                 <section id="socialLoginForm">
@@ -35,6 +35,7 @@
         </div>
     </div>
 </div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
