@@ -4,21 +4,25 @@
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_LoginStyle.cshtml";
 }
+
 <div class="row">
     <div class="col-md-7">
         <div class="padding-all">
                 <h2> @ViewBag.Title</h2>
             <br />
-            <div class="design-w3l">
-                <div class="mail-form-agile">
-                    <form action="#" method="post">
-                        <input type="text" name="name" placeholder="Username" required />
-                        <input type="password" name="password" class="padding" placeholder="Password" required />
-                        <input type="submit" value="submit">
-                    </form>
+               
+                <div class="design-w3l">
+                    <div class="mail-form-agile">
+                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <input type="text" name="Username" placeholder="Username" required />
+                            <input type="password" name="Password" class="padding" placeholder="Password" required />
+                            <input type="submit" value="submit">
+                        }
+                    </div>
+                    <div class="clear"> </div>
                 </div>
-                <div class="clear"> </div>
-            </div>
         </div>
     </div>
 
@@ -35,7 +39,6 @@
         </div>
     </div>
 </div>
-
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
