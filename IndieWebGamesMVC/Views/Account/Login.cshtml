@@ -4,28 +4,36 @@
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_LoginStyle.cshtml";
 }
+
 <div class="row">
     <div class="col-md-7">
         <div class="padding-all">
-                <h1><img src="./images/5.png" alt=""> @ViewBag.Title</h1>
+                <h2> @ViewBag.Title</h2>
             <br />
-            <div class="design-w3l">
-                <div class="mail-form-agile">
-                    <form action="#" method="post">
-                        <input type="text" name="name" placeholder="Username  or  email..." required />
-                        <input type="password" name="password" class="padding" placeholder="Password" required />
-                        <input type="submit" value="submit">
-                    </form>
+                <div class="design-w3l">
+                    <div class="mail-form-agile">
+                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            @Html.ValidationSummary("", new { @class = "text-danger" })
+
+                            @Html.TextBoxFor(m => m.Username, new { @placeholder="Username", @class="padding" })
+                            
+                            @Html.PasswordFor(m => m.Password, new { @placeholder = "Password", @class = "padding" })
+
+                            <input type="submit" value="Log in">
+                        }
+                    </div>
+                    <div class="clear"> </div>
                 </div>
-                <div class="clear"> </div>
-            </div>
         </div>
     </div>
 
     <br />
     <div class="col-md-5">
         <div class="padding-all">
-            <h1><img src="./images/5.png" alt=""> Login With:</h1>
+            <h2>Login With:</h2>
             <br />
             <div class="mail-form-agile">
                 <section id="socialLoginForm">
