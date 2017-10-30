@@ -63,6 +63,8 @@ namespace IndieWebGamesMVC
                 ClientId = "39263700925-sv513l4oivas7cn7evl4eer9l0srtn06.apps.googleusercontent.com",
                 ClientSecret = "6E4OZf-A2QfTrM_f04uDwHsA"
             });
+
+            
         }
     }
 }
