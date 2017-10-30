@@ -15,6 +15,8 @@
     <div class="padding-all col-lg-offset-2">
         <div class="design-w3l">
             <div class="mail-form-agile">
+                        @Html.TextBoxFor(m => m.Name, new { @class = "padding", @placeholder = "Username" })
+
                         @Html.TextBoxFor(m => m.Email, new { @class = "padding", @placeholder="Email"})
 
                         @Html.PasswordFor(m => m.Password, new { @class = "padding", @placeholder = "Password" })
