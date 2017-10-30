@@ -3,34 +3,30 @@
 
 @{
     var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
-    if (loginProviders.Count() == 0) {
-        <div>
+
+    using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Model.ReturnUrl }))
+    {
+        @Html.AntiForgeryToken()
+        <div id="socialLoginList">
             <p>
-                There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                for details on setting up this ASP.NET application to support logging in via external services.
+                @foreach (AuthenticationDescription p in loginProviders)
+                {
+                    if (p.Caption.Equals("Google"))
+                    {
+                        <button type="submit" class="btn btn-danger btn-block" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account"><i class="fa fa-google"></i> @p.AuthenticationType</button>
+                    }
+                    else if (p.Caption.Equals("Facebook"))
+                    {
+                        <button type="submit" class="btn btn-primary btn-block" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account"><i class="fa fa-facebook-official"></i> @p.AuthenticationType</button>
+
+                    }
+                    else if (p.Caption.Equals("Twitter"))
+                    {
+                        <button type="submit" class="btn btn-info btn-block" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account"><i class="fa fa-twitter"></i> @p.AuthenticationType</button>
+                    }
+                }
+
             </p>
         </div>
-    }
-    else {
-        using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Model.ReturnUrl })) {
-            @Html.AntiForgeryToken()
-            <div id="socialLoginList">
-                <p>
-                    @foreach (AuthenticationDescription p in loginProviders)
-                    {
-                        if (p.Caption.Equals("Google"))
-                        {
-                            <button type="submit" class="btn btn-danger btn-block" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account"><i class="fa fa-google"></i> @p.AuthenticationType</button>
-                        }
-                        else if (p.Caption.Equals("Facebook"))
-                        {
-                            <button type="submit" class="btn btn-primary btn-block" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">@p.AuthenticationType</button>
-
-                        }
-                    }
-
-                </p>
-            </div>
-        }
     }
 }

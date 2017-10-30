@@ -1,5 +1,7 @@
 ﻿body {
-    padding-top: 50px;
+    background: url("../images/3.jpg") 0px 0px no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
     padding-bottom: 20px;
 }
 
@@ -22,3 +24,17 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.navbar-inverse {
+    background: none;
+    border-color: transparent;
+}
+
+    .navbar-inverse .navbar-nav > li > a {
+        color: #9d9d9d;
+    }
+
+footer {
+    color: #9d9d9d;
+}
+
