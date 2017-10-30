@@ -57,7 +57,7 @@ h1 {
 }
 
 h2 {
-    font-size: 40px;
+    font-size: 44px;
     color: #fff;
     font-family: "Audiowide-Regular";
     letter-spacing: 3px;
@@ -99,7 +99,7 @@ h6 {
 
 .frame {
     background: #e0e0de;
-    height: 300px;
+    height: 350px;
     overflow: hidden;
     padding: 0;
     float:right;
@@ -113,7 +113,7 @@ h6 {
     }
     .frame > ul {
         list-style: none;
-        max-height: 220px;
+        max-height: 265px;
         margin: 0;
         overflow: auto;
         padding: 0;
