@@ -23,7 +23,7 @@ namespace IndieWebGamesAPI.Controllers
 
 
         //private Predicate<UserStatus> comparerer = new Predicate<UserStatus> { userstat => userstat}
-        private applicationDbContext context;
+        //private applicationDbContext context;
         // api/Users
 
         public List<UserStatus> GetCurrentUsers()
