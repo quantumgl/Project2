@@ -31,8 +31,7 @@ namespace IndieWebGamesAPI.Controllers
             
             DateTime updated = DateTime.Now.Add(new TimeSpan(0, 0, -5));
         
-            var users = loggedinusers.FindAll(current => ((current.LastPing <= DateTime.Now) && (current.LastPing > updated)));
-            
+            var users = loggedinusers.FindAll(current => ((current.LastPing <= DateTime.Now) && (current.LastPing > updated)));           
 
             return (users);
         }
