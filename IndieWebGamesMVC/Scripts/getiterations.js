@@ -34,15 +34,22 @@ function myCallback()
 {
     if (debug == 1)
     {
-        app.service("APIService", function ($http, $scope, $log)
-        {
-            $http
-                ({
-                    method: 'GET',
-                    url: 'http://indiewebgamesapi.azurewebsites.net/api/Users'
-                }).then(function successCallback(response) {
-                    $scope.intervalId = response.data;
-                });
-        });
+        //app.service("APIService", function ($http, $scope, $log)
+        //{
+        //    $http
+        //        ({
+        //            method: 'GET',
+        //            url: 'http://indiewebgamesapi.azurewebsites.net/api/Users'
+        //        }).then(function successCallback(response) {
+        //            $scope.intervalId = response.data;
+        //        });
+        //});
+
+        //app.service('callUsers', function ($scope, $http, $log) {
+        //    $http.get("http://indiewebgamesapi.azurewebsites.net/api/Users")
+        //        .then(function (response) {
+        //            $scope.users = response.data;
+        //        });
+        //})
     }
 }
