@@ -11,7 +11,7 @@
 
     refresh_users = function ($scope, $http, $log) {
         //console.log("Refresh status being called");
-        $http.get("http://indiewebgamesapi.azurewebsites.net/api/Users")
+        $http.get("https://indiewebgamesapi.azurewebsites.net/api/Users")
             .then(function (response) {
                 $scope.users = response.data;
             });
@@ -23,7 +23,7 @@
         $scope.online = function (name) {
             $scope.name = name;
             console.log("How many times this is being called");
-            $http.get("http://indiewebgamesapi.azurewebsites.net/api/Users?UserName=" + $scope.name)
+            $http.get("https://indiewebgamesapi.azurewebsites.net/api/Users?UserName=" + $scope.name)
                 .then(function (response) {
                     $scope.user_details = response.data;
                     $log.info(response);
