@@ -14,15 +14,16 @@ namespace IndieWebGamesAPI.Controllers
 {
     public class IndiePlayerProfilesController : ApiController
     {
-        private IndieWebGamesAPIDbContext db = new IndieWebGamesAPIDbContext();
+        private IndieWebGamesAPIDbContext db    = new IndieWebGamesAPIDbContext();
 
         // GET: api/IndiePlayerProfiles
         public IEnumerable<IndiePlayerProfile> GetIndiePlayerProfiles()
         {
-            IndiePlayerProfile profile1 = new IndiePlayerProfile { Id = 0, UserName = "Andres", Level = 0, PreferredGenre = Genres.Platformer };
+            IndiePlayerProfile profile1         = new IndiePlayerProfile { Id = 0, UserName = "Andres", Level = 0, PreferredGenre = Genres.Platformer };
             List<IndiePlayerProfile> samplelist = new List<IndiePlayerProfile>();
 
             samplelist.Add(profile1);
+
             return samplelist;//db.IndiePlayerProfiles;
         }
 
