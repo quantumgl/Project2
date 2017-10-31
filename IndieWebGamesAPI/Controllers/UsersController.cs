@@ -34,9 +34,10 @@ namespace IndieWebGamesAPI.Controllers
 
             return (users);
         }
-
+        
+        //[HttpPost]
         // api/Users/{UserName}
-        public void GetPingerUserName(string UserName, UserStatus users)
+        public void GetPingerUserName(string UserName)
         {
             var user = loggedinusers.Find(userstatus => userstatus.Name.Equals(UserName));
 
