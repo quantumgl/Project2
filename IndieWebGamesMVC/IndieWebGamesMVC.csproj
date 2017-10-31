@@ -227,6 +227,7 @@
     <Content Include="images\3.jpg" />
     <Content Include="images\5.png" />
     <Content Include="images\ghost.png" />
+    <Content Include="images\online.ico" />
     <Content Include="images\tic2.png" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular.js" />

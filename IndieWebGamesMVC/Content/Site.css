@@ -118,7 +118,11 @@ h6 {
         overflow: auto;
         padding: 0;
         text-indent: 10px;
-        text-align:center;
+        text-align:right;
     }
+        .frame > ul > .list-group-item {
+            background-color: transparent;
+            border-top: 1px solid #060606;
+        }
 
 

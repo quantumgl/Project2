@@ -28,13 +28,13 @@ namespace IndieWebGamesAPI.Controllers
 
         public List<UserStatus> GetCurrentUsers()
         {
-            
             DateTime updated = DateTime.Now.Add(new TimeSpan(0, 0, -5));
         
             var users = loggedinusers.FindAll(current => ((current.LastPing <= DateTime.Now) && (current.LastPing > updated)));           
 
             return (users);
         }
+
         // api/Users/{UserName}
         public void GetPingerUserName(string UserName, UserStatus users)
         {
@@ -49,8 +49,7 @@ namespace IndieWebGamesAPI.Controllers
                 user.LastPing = DateTime.Now;
 
             }
-               
-          
+                
         }
 
     }
