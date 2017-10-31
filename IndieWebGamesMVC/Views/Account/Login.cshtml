@@ -18,7 +18,7 @@
 
                             @Html.ValidationSummary("", new { @class = "text-danger" })
 
-                            @Html.TextBoxFor(m => m.Username, new { @placeholder="Username"})
+                            @Html.TextBoxFor(m => m.Username, new {ng_model="userName", @placeholder="Username"})
                             
                             @Html.PasswordFor(m => m.Password, new { @placeholder = "Password", @class = "padding" })
 
