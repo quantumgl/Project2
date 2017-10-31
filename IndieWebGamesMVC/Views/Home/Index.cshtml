@@ -8,22 +8,21 @@
                 <center><h1 style="color: white">Indie Web Games</h1></center>
             </div>
         </div>
-        </div>
+    </div>
 
     <div class="row">
         <div class="col-lg-9">
 
         </div>
 
-        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 frame">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 frame" ng-controller="callUsers as user">
             <br />
             <center><h5 style="color:black">Online players</h5></center>
             <hr />
-            <ul>
-                <li ng-repeat="u in users">{{u.name}}</li>
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="u in users"><img src="~/images/online.ico" height="10" width="10" class="pull-left"></img> {{u.name}}</li>
             </ul>
         </div>
     </div>
 </div>
 
-    
