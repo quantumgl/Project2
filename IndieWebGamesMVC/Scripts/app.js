@@ -9,6 +9,8 @@
     //    }
     //}
 
+
+    //Proper angularjs syntax?
     refresh_users = function ($scope, $http, $log) {
         //console.log("Refresh status being called");
         $http.get("https://indiewebgamesapi.azurewebsites.net/api/Users")
@@ -22,12 +24,12 @@
         console.log(name);
         $scope.online = function (name) {
             $scope.name = name;
-            console.log("How many times this is being called");
+            //console.log("How many times this is being called");
             $http.get("https://indiewebgamesapi.azurewebsites.net/api/Users?UserName=" + $scope.name)
                 .then(function (response) {
                     $scope.user_details = response.data;
                     $log.info(response);
-                    console.log("Posting..." + $scope.name);
+                    //console.log("Posting..." + $scope.name);
                 },
                 function (response) {
                     console.log(response);
