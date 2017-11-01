@@ -10,5 +10,6 @@ namespace IndieWebGamesAPI.Models
         {
             public string Name { get; set; }
             public DateTime LastPing { get; set; }
-        }
+            public int gameStatus { get; set; }
+    }
 }

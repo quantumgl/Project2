@@ -8,7 +8,7 @@
         <EntityTypeShape EntityType="indiewebgamesModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
         <EntityTypeShape EntityType="indiewebgamesModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="indiewebgamesModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="indiewebgamesModel.AspNetUser" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="indiewebgamesModel.AspNetUser" Width="1.5" PointX="2.75" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="indiewebgamesModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="indiewebgamesModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="indiewebgamesModel.AspNetUserRoles" ManuallyRouted="false" />
