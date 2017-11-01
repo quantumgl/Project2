@@ -2,6 +2,7 @@
     var app = angular.module('myModule', []);
 
     var debug = 1;
+    var lock = 0;
     //var intervalId = window.setInterval(myCallback, 1000);
     //function myCallback() {
     //    if (debug == 1) {
@@ -57,8 +58,18 @@
                 refresh_users($scope, $http, $log);
             }
         }
-        $scope.name = document.getElementById("name").innerHTML;
-        var intervalId = window.setInterval(myCallback, 1000);
+
+        if (lock == 0) {
+            lock = 1;
+            $scope.name = document.getElementById("name").innerHTML;
+            $scope.userid = document.getElementById("userid").innerHTML;
+            console.log("Username: " + $scope.name);
+            console.log("Userid: " + $scope.userid);
+            var intervalId = window.setInterval(myCallback, 1000);
+        }
+        else {
+            console.log("Hunch confirmed");
+        }
     })
 
     app.controller('addUser', function ($scope, $http, $log)
