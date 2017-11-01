@@ -34,25 +34,44 @@ namespace IndieWebGamesAPI.Controllers
 
             return (users);
         }
-        
+
         //[HttpPost]
         // api/Users/{UserName}
-        public void GetPingerUserName(string UserName)
+        //    public void GetPingerUserName(string UserName)
+        //    {
+        //        var user = loggedinusers.Find(userstatus => userstatus.Name.Equals(UserName));
+
+        //        if (user == null)
+        //        {
+        //            loggedinusers.Add(new UserStatus {Name = UserName, LastPing = DateTime.Now});
+        //        }
+        //        else
+        //        {
+        //            user.LastPing = DateTime.Now;
+
+        //        }
+
+        //    }
+
+    //[HttpPost]
+    //api/Users/{UserName
+    
+    public void GetPingerUserName(string UserName)
+    {
+        var user = loggedinusers.Find(userstatus => userstatus.Name.Equals(UserName));
+
+        if (user == null)
         {
-            var user = loggedinusers.Find(userstatus => userstatus.Name.Equals(UserName));
+            loggedinusers.Add(new UserStatus { Name = UserName, LastPing = DateTime.Now });
+        }
+        else
+        {
+            user.LastPing = DateTime.Now;
 
-            if (user == null)
-            {
-                loggedinusers.Add(new UserStatus {Name = UserName, LastPing = DateTime.Now});
-            }
-            else
-            {
-                user.LastPing = DateTime.Now;
-
-            }
-                
         }
 
     }
+
+}
 
 }
