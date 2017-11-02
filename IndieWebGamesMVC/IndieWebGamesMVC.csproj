@@ -231,12 +231,13 @@
     <Content Include="images\online2.png" />
     <Content Include="images\online.ico" />
     <Content Include="images\tic2.png" />
-    <Content Include="Scripts\AngularScripts\angular-mocks.js" />
-    <Content Include="Scripts\AngularScripts\angular-route.js" />
-    <Content Include="Scripts\AngularScripts\angular.js" />
-    <Content Include="Scripts\AngularScripts\angular.min.js" />
-    <Content Include="Scripts\AngularScripts\app.js" />
-    <Content Include="Scripts\AngularScripts\Controllers\Controllers.js" />
+    <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular-route.js" />
+    <Content Include="Scripts\angular-route.min.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\app2.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -244,7 +245,7 @@
     </Content>
     <Content Include="fonts\Asap-Regular.ttf" />
     <Content Include="fonts\Audiowide-Regular.ttf" />
-    <Content Include="Scripts\AngularScripts\angular.min.js.map" />
+    <Content Include="Scripts\angular.min.js.map" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -263,6 +264,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Content Include="Scripts\angular-route.min.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.2.1.js" />
@@ -280,7 +282,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Views\Users\Index.html" />
+    <Content Include="Views\Users\Users.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -323,6 +325,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

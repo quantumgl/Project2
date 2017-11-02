@@ -11,8 +11,8 @@
     //}
     //Proper angularjs syntax?
 
-    
-    
+
+
     refresh_users = function (scope, http, log) {
         //console.log("Refresh status being called");
         http.get("https://indiewebgamesapi.azurewebsites.net/api/Users")
@@ -22,8 +22,7 @@
             });
     }
 
-    refresh_status = function ($scope, $http, $log)
-    {
+    refresh_status = function ($scope, $http, $log) {
         UserStatus = function (name, code) {
             this.Name = name;
             this.codes = code;
@@ -38,7 +37,7 @@
             this.userStatus = new UserStatus(userName, code);
             this.authViewModel = new AuthViewModel(userName, userid);
         }
-        
+
         //authobj = {
         //    "userStatus":
         //    {
@@ -63,11 +62,11 @@
             }, function (response) {
                 console.log(response)
             }
-            );               
+            );
     }
 
     authenticate = function ($scope, $http, $log) {
-        
+
         authobj = {
             "userStatus":
             {
@@ -82,14 +81,14 @@
         };
         console.log("Problematic object: " + authobj);
         $http.post("http://indiewebgamesapi.azurewebsites.net/api/AuthViewModelTest", authobj)
-        //$http.post("http://localhost:59596/api/AuthViewModelTest", authobj)
+            //$http.post("http://localhost:59596/api/AuthViewModelTest", authobj)
             .then(function (response) {
                 $scope.user_details = response.data;
                 $log.info(response);
             }, function (response) {
                 console.log(response)
             }
-        );
+            );
     }
 
     checkauth = function ($scope, $http, $log) {
@@ -97,17 +96,17 @@
             .then(function (response) {
                 $scope.user_details = response.data;
                 //$log.info(response);
-            }); 
+            });
     }
 
     app.controller('addUser', function ($scope, $http, $scope) {
 
         //This is for getting the users that get authenticated with social logins
         $scope.online = function (name) {
-            
-                $scope.name = name;
-                $http.get("http://indiewebgamesapi.azurewebsites.net/api/Users?UserName=" + name);
-                console.log("hello from addUser");
+
+            $scope.name = name;
+            $http.get("http://indiewebgamesapi.azurewebsites.net/api/Users?UserName=" + name);
+            console.log("hello from addUser");
 
         };
 
@@ -148,6 +147,6 @@
         }
     });
 
-    
-    
+
+
 })();
