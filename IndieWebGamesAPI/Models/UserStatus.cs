@@ -5,10 +5,12 @@ using System.Web;
 
 namespace IndieWebGamesAPI.Models
 {
-  
-        public class UserStatus
+    public enum StatCodes { Online, Away, Busy, Playing }
+
+    public class UserStatus
         {
             public string Name { get; set; }
             public DateTime LastPing { get; set; }
-        }
+            public StatCodes codes { get; set; }
+    }
 }
