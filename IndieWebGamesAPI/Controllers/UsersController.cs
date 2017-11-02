@@ -12,14 +12,9 @@ namespace IndieWebGamesAPI.Controllers
 {
     public class UsersController : ApiController
     {
-       
+
         //private static List<UserStatus> loggedinusers;
-        private static List<UserStatus> loggedinusers = new List<UserStatus>{
-         new UserStatus {  Name = "Mark", LastPing =
-            DateTime.Now},
-         new UserStatus {  Name = "Joe", LastPing =
-            DateTime.Now },
-      };
+        private static List<UserStatus> loggedinusers = new List<UserStatus>();
 
 
         //private Predicate<UserStatus> comparerer = new Predicate<UserStatus> { userstat => userstat}
@@ -35,22 +30,28 @@ namespace IndieWebGamesAPI.Controllers
             return (users);
         }
         
-        //[HttpPost]
+        [HttpPost]
         // api/Users/{UserName}
-        public void GetPingerUserName(string UserName)
+        public void GetPingerUserName(AuthenticateUserStatus authUser)
         {
-            var user = loggedinusers.Find(userstatus => userstatus.Name.Equals(UserName));
+
+            if (authUser.authViewModel.isAuthentic)
+            {
+                var userVm = authUser.userStatus;
+            var user = loggedinusers.Find(userstatus => userstatus.Name.Equals(userVm.Name));
 
             if (user == null)
             {
-                loggedinusers.Add(new UserStatus {Name = UserName, LastPing = DateTime.Now});
+                loggedinusers.Add(new UserStatus {Name = userVm.Name, LastPing = DateTime.Now,codes = StatCodes.Online});
             }
             else
             {
                 user.LastPing = DateTime.Now;
+                user.codes = userVm.codes;
+                    
 
             }
-                
+          }      
         }
 
     }
