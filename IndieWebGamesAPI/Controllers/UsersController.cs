@@ -34,7 +34,7 @@ namespace IndieWebGamesAPI.Controllers
         // api/Users/{UserName}
         public void GetPingerUserName(AuthenticateUserStatus authUser)
         {
-
+            
             if (authUser.authViewModel.isAuthentic)
             {
                 var userVm = authUser.userStatus;
