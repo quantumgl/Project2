@@ -7,7 +7,8 @@
     @Html.AntiForgeryToken()
     
         <span hidden id="name">@User.Identity.GetUserName()</span>
-    
+        <span hidden id="userid">@User.Identity.GetUserId()</span>
+
     <ul class="nav navbar-nav navbar-right" ng-controller="addUser" ng-init="online('@User.Identity.GetUserName()')">
         <li>
             @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
