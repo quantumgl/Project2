@@ -17,18 +17,52 @@
         //console.log("Refresh status being called");
         http.get("https://indiewebgamesapi.azurewebsites.net/api/Users")
             .then(function (response) {
+                console.log("Response list from API: " + JSON.stringify(response));
                 scope.users = response.data;
             });
     }
 
-    refresh_status = function ($scope, $http)
+    refresh_status = function ($scope, $http, $log)
     {
-        $http.get("https://indiewebgamesapi.azurewebsites.net/api/Users?UserName=" + $scope.name)               
+        authobj = {
+            "userStatus":
+            {
+                "Name": $scope.name,
+                "codes": 0
+            },
+            "authViewModel": {
+                "Name": $scope.name,
+                "userid": $scope.userid
+
+            }
+        };
+        //console.log("Problematic object: " + JSON.stringify(authobj));
+        $http.post("https://indiewebgamesapi.azurewebsites.net/api/Users", authobj)
+            //$http.post("http://localhost:59596/api/AuthViewModelTest", authobj)
+            .then(function (response) {
+                $scope.user_details = response.data;
+                //$log.info(response);
+                console.log(response);
+            }, function (response) {
+                console.log(response)
+            }
+            );               
     }
 
     authenticate = function ($scope, $http, $log) {
         
-        authobj = { "name": $scope.name, "userid": $scope.userid };
+        authobj = {
+            "userStatus":
+            {
+                "Name": $scope.name,
+                "codes": 0
+            },
+            "authViewModel": {
+                "Name": $scope.name,
+                "userid": $scope.userid
+
+            }
+        };
         console.log("Problematic object: " + authobj);
         $http.post("http://indiewebgamesapi.azurewebsites.net/api/AuthViewModelTest", authobj)
         //$http.post("http://localhost:59596/api/AuthViewModelTest", authobj)
@@ -84,8 +118,8 @@
             var intervalId = window.setInterval(myCallback, 1000);
 
 
-            authenticate($scope, $http, $log);
-            checkauth($scope, $http, $log);
+            //authenticate($scope, $http, $log);
+            //checkauth($scope, $http, $log);
         }
         else {
             console.log("Hunch confirmed");
