@@ -196,6 +196,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IndiePlayerProfilesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\UserStatusController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -205,6 +206,7 @@
     <Compile Include="Models\AspNetUser.cs" />
     <Compile Include="Models\AspNetUserClaim.cs" />
     <Compile Include="Models\AspNetUserLogin.cs" />
+    <Compile Include="Models\AuthenticateUserStatus.cs" />
     <Compile Include="Models\AuthViewModel.cs" />
     <Compile Include="Models\IdentityDataModelCode.cs" />
     <Compile Include="Models\IndiePlayerProfile.cs" />
