@@ -1,6 +1,7 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+
 <div class="col-lg-12">
     <div class="row">
         <div class="col-md-12">
@@ -8,6 +9,14 @@
                 <center><h1 style="color: white">Indie Web Games</h1></center>
             </div>
         </div>
+    </div>
+
+    <div ng-controller="userIconController">
+        <img id="userIconShow" src="" />
+        <button ng-click="getUserIcon()">Fetch the user image</button>             
+        <input id="userIconLoad" type="file" />
+        <button ng-click="postUserIcon()">Submit the user image to the API</button>
+        
     </div>
 
     <div class="row">
