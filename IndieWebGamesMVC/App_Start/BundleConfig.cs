@@ -32,6 +32,11 @@ namespace IndieWebGamesMVC
                       "~/Content/bootstrap.css",
                       "~/Content/site.css", 
                       "~/Content/font-awesome.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/api").Include(
+                "~/Scripts/API/controllers.js",
+                "~/Scripts/API/models.js"
+                ));
         }
     }
 }

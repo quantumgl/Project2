@@ -1,43 +1,85 @@
 ﻿@using IndieWebGamesMVC.Models
-@model LoginViewModel
 @{
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_LoginStyle.cshtml";
 }
-
 <div class="row">
-    <div class="col-md-7">
+    
+    <div class="col-md-7" ng-controller="addUser">
         <div class="padding-all">
                 <h2> @ViewBag.Title</h2>
             <br />
                 <div class="design-w3l">
                     <div class="mail-form-agile">
-                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = "/Users/Index.html" }, FormMethod.Post, new { role = "form" }))
-                        {
-                            @Html.AntiForgeryToken()
+                        <form method="post" action="~/Account/Login">                        
+                        
+                            @*@Html.AntiForgeryToken()*@
 
                             @Html.ValidationSummary("", new { @class = "text-danger" })
 
-                            @Html.TextBoxFor(m => m.Username, new {ng_model="userName", @placeholder="Username"})
                             
-                            @Html.PasswordFor(m => m.Password, new { @placeholder = "Password", @class = "padding" })
+                            
+                            <input type="text" ng-model="userName" placeholder="Username" class="padding" name="Username" required />
 
-                            <input type="submit" value="Log in">
-                        }
+                            
+
+                            <input type="password" ng-model="Password" class="padding" name="Password" placeholder="Password" required/>
+
+                            <input hidden type="text" name="returnUrl" value="~/" />
+
+                            <input type="submit" value="Log in" ng-click="login()">
+                        
+                        </form>
                     </div>
                     <div class="clear"> </div>
                 </div>
         </div>
     </div>
+        
 
     <br />
+    
     <div class="col-md-5">
         <div class="padding-all">
             <h2>Login With:</h2>
             <br />
             <div class="mail-form-agile">
                 <section id="socialLoginForm">
-                    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                    @model IndieWebGamesMVC.Models.ExternalLoginListViewModel
+                    @using Microsoft.Owin.Security
+
+                    @{
+                        var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
+
+
+                        <form method="post" action="~/Account/ExternalLogin">
+                            <input hidden name="returnUrl" value="~/" />
+                       
+                            @*@Html.AntiForgeryToken()*@
+                            <div id="socialLoginList">
+                                <p>
+                                    @foreach (AuthenticationDescription p in loginProviders)
+                                    {
+                                        if (p.Caption.Equals("Google"))
+                                        {
+                                            <button type="submit" class="btn btn-danger btn-block" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType"><i class="fa fa-google"></i> @p.AuthenticationType</button>
+                                        }
+                                        else if (p.Caption.Equals("Facebook"))
+                                        {
+                                            <button type="submit" class="btn btn-primary btn-block" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType"><i class="fa fa-facebook-official"></i> @p.AuthenticationType</button>
+
+                                        }
+                                        else if (p.Caption.Equals("Twitter"))
+                                        {
+                                            <button type="submit" class="btn btn-info btn-block" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType"><i class="fa fa-twitter"></i> @p.AuthenticationType</button>
+                                        }
+                                    }
+
+                                </p>
+                            </div>
+                        
+                            </form>
+                        }
                 </section>
             </div>
         </div>
@@ -46,4 +88,5 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    
 }
