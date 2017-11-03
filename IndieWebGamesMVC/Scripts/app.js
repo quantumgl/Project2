@@ -69,6 +69,7 @@
             }
 
             var file = $scope.icon_path.files[0];
+            console.log(file);
             var file_reader = new FileReader();
 
             file_reader.onload = prep_the_image;

@@ -20,7 +20,7 @@ var AuthenticateUserStatus = function (userName, code, userid)
 var UserIcon = function (image, name)
 {
     this.Blob = image;
-    this.Name = name;
+    this.Username = name;
 }
 
 var AuthUserIcon = function (userName, image, userid)

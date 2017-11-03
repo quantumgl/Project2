@@ -10,7 +10,7 @@ namespace IndieWebGamesAPI.Controllers
 {
     public class UserIconController : ApiController
     {
-        List<UserIcon> iconlist = new List<UserIcon>();
+        static List<UserIcon> iconlist = new List<UserIcon>();
         // GET api/<controller>
         public IEnumerable<string> Get()
         {
@@ -18,9 +18,11 @@ namespace IndieWebGamesAPI.Controllers
         }
 
         // GET api/<controller>/5
-        public byte[] Get(string Username)
+        public string Get(string Username)
         {
-            return iconlist.Find(uc => uc.Username == Username).Blob;
+
+            var icon = iconlist.Find(uc => uc.Username == Username);
+            return icon == null? "" : icon.Blob;
         }
 
         // POST api/<controller>
