@@ -12,7 +12,7 @@
             <br />
                 <div class="design-w3l">
                     <div class="mail-form-agile">
-                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = "/Users/Index.html" }, FormMethod.Post, new { role = "form" }))
                         {
                             @Html.AntiForgeryToken()
 

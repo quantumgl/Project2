@@ -1,23 +1,14 @@
 ﻿(function () {
-    var app = angular.module('myModule', []);
+    var app = angular.module('app', []);
 
     var debug = 1;
     var lock = 0;
-    //var intervalId = window.setInterval(myCallback, 1000);
-    //function myCallback() {
-    //    if (debug == 1) {
-    //        console.log("Turning this thing on");
-    //    }
-    //}
-    //Proper angularjs syntax?
 
-    
-    
     refresh_users = function (scope, http, log) {
         //console.log("Refresh status being called");
         http.get("https://indiewebgamesapi.azurewebsites.net/api/Users")
             .then(function (response) {
-                console.log("Response list from API: " + JSON.stringify(response));
+                //console.log("Response list from API: " + JSON.stringify(response));
                 scope.users = response.data;
             });
     }
@@ -63,7 +54,7 @@
 
             }
         };
-        console.log("Problematic object: " + authobj);
+
         $http.post("http://indiewebgamesapi.azurewebsites.net/api/AuthViewModelTest", authobj)
         //$http.post("http://localhost:59596/api/AuthViewModelTest", authobj)
             .then(function (response) {
@@ -90,7 +81,6 @@
             
                 $scope.name = name;
                 $http.get("http://indiewebgamesapi.azurewebsites.net/api/Users?UserName=" + name);
-
         };
 
     });
