@@ -236,6 +236,8 @@
     <Content Include="Scripts\angular-route.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\API\controllers.js" />
+    <Content Include="Scripts\API\models.js" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\app2.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -325,7 +327,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
