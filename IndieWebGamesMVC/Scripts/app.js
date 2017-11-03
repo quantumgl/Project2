@@ -17,7 +17,7 @@
         //console.log("Refresh status being called");
         http.get("https://indiewebgamesapi.azurewebsites.net/api/Users")
             .then(function (response) {
-                console.log("Response list from API: " + JSON.stringify(response));
+                //console.log("Response list from API: " + JSON.stringify(response));
                 scope.users = response.data;
             });
     }
@@ -58,12 +58,7 @@
             //$http.post("http://localhost:59596/api/AuthViewModelTest", authobj)
             .then(function (response) {
                 $scope.user_details = response.data;
-                //$log.info(response);
-                console.log(response);
-            }, function (response) {
-                console.log(response)
-            }
-            );               
+            });               
     }
 
     authenticate = function ($scope, $http, $log) {
@@ -100,14 +95,14 @@
             }); 
     }
 
-    app.controller('addUser', function ($scope, $http, $scope) {
+    app.controller('addUser', function ($scope, $http, $rootScope) {
 
         //This is for getting the users that get authenticated with social logins
         $scope.online = function (name) {
             
-                $scope.name = name;
+                $rootScope.name = name;
                 $http.get("http://indiewebgamesapi.azurewebsites.net/api/Users?UserName=" + name);
-                console.log("hello from addUser");
+                //console.log("hello from addUser");
 
         };
 
@@ -119,11 +114,6 @@
 
 
     app.controller('callUsers', function ($scope, $http, $log, $rootScope) {
-        //$http.get("http://indiewebgamesapi.azurewebsites.net/api/Users")
-        //    .then(function (response) {
-        //        $scope.users = response.data;
-        //    });
-
         function myCallback() {
             if (debug == 1) {
                 refresh_status($scope, $http);

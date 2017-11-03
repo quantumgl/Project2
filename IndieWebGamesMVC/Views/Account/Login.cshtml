@@ -5,7 +5,7 @@
 }
 <div class="row">
     
-    <div class="col-md-7" ng-controller="addUser">
+    <div class="col-md-7 col-lg-7 col-sm-12 col-xs-12" ng-controller="addUser">
         <div class="padding-all">
                 <h2> @ViewBag.Title</h2>
             <br />
@@ -13,19 +13,15 @@
                     <div class="mail-form-agile">
                         <form method="post" action="~/Account/Login">                        
                         
-                            @*@Html.AntiForgeryToken()*@
+                            @Html.AntiForgeryToken()
 
                             @Html.ValidationSummary("", new { @class = "text-danger" })
-
                             
-                            
-                            <input type="text" ng-model="userName" placeholder="Username" class="padding" name="Username" required />
+                            <input type="text" ng-model="userName" placeholder="Username" class="padding" name="Username" />
 
-                            
+                            <input type="password" ng-model="Password" class="padding" name="Password" placeholder="Password" />
 
-                            <input type="password" ng-model="Password" class="padding" name="Password" placeholder="Password" required/>
-
-                            <input hidden type="text" name="returnUrl" value="~/" />
+                            <input hidden type="text" name="returnUrl" value="~/Users/Index.html" />
 
                             <input type="submit" value="Log in" ng-click="login()">
                         
@@ -53,9 +49,9 @@
 
 
                         <form method="post" action="~/Account/ExternalLogin">
-                            <input hidden name="returnUrl" value="~/" />
+                            <input hidden name="returnUrl" value="~/Users/Index.html" />
                        
-                            @*@Html.AntiForgeryToken()*@
+                            @Html.AntiForgeryToken()
                             <div id="socialLoginList">
                                 <p>
                                     @foreach (AuthenticationDescription p in loginProviders)
