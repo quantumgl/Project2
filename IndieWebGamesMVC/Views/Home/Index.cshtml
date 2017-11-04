@@ -1,36 +1,183 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@using Microsoft.AspNet.Identity
+@using IndieWebGamesMVC.Models
+@using Microsoft.Owin.Security
+@model IndieWebGamesMVC.Models.ExternalLoginConfirmationViewModel
+@{
+    ViewBag.Token = Html.AntiForgeryToken();
 }
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Indie Web Games, IndieWebGames, Online Games, Games, Gaming" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/api")
 
-<div class="col-lg-12">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="jumbotron" style="background-color:transparent">
-                <center><h1 style="color: white">Indie Web Games</h1></center>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Indie Web Games", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                </ul>
+                @if (Request.IsAuthenticated)
+                {
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <span hidden id="name">@User.Identity.GetUserName()</span>
+                        <span hidden id="userid">@User.Identity.GetUserId()</span>
+
+                        <ul class="nav navbar-nav navbar-right" ng-controller="addUser" ng-init="online('@User.Identity.GetUserName()')">
+                            <li>
+                                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                            </li>
+                            <li><a href="javascript:document.getElementById('logoutForm').submit()">Logout</a></li>
+                        </ul>
+                    }
+
+                }
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right">                        
+                        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                    </ul>
+                }
             </div>
         </div>
     </div>
+    <div class="container body-content">
 
-    @*<div ng-controller="userIconController">
-        <img id="userIconShow" src="" />
-        <button ng-click="getUserIcon()">Fetch the user image</button>             
-        <input id="userIconLoad" type="file" />
-        <button ng-click="postUserIcon()">Submit the user image to the API</button>
-    </div>*@
 
-    <div class="row">
-        <div class="col-lg-9">
+        @if (Request.IsAuthenticated == false)
+        {
+        <div>
+            <form method="post" action="~/Account/Login">
 
+                @ViewBag.Token
+
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+
+
+
+                <input type="text" ng-model="userName" placeholder="Username" class="padding" name="Username" required />
+
+                <input type="password" ng-model="Password" class="padding" name="Password" placeholder="Password" required />
+
+                <input hidden type="text" name="returnUrl" value="~/" />
+
+                <input type="submit" value="Log in" ng-click="login()">
+
+            </form>
+        </div>
+        <div class="mail-form-agile">
+            <section id="socialLoginForm">
+
+                @{
+                    var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
+
+
+                    <form method="post" action="~/Account/ExternalLogin">
+                        <input hidden name="returnUrl" value="~/" />
+
+                        @ViewBag.Token
+                        <div id="socialLoginList">
+                            <p>
+                                @foreach (AuthenticationDescription p in loginProviders)
+                                {
+                                    if (p.Caption.Equals("Google"))
+                                    {
+                                        <button type="submit" class="btn btn-danger btn-block" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType"><i class="fa fa-google"></i> @p.AuthenticationType</button>
+                                    }
+                                    else if (p.Caption.Equals("Facebook"))
+                                    {
+                                        <button type="submit" class="btn btn-primary btn-block" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType"><i class="fa fa-facebook-official"></i> @p.AuthenticationType</button>
+
+                                    }
+
+                                }
+
+                            </p>
+                        </div>
+
+                    </form>
+                    }
+            </section>
+        </div>
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="jumbotron" style="background-color:transparent">
+                        <center><h1 style="color: white">Indie Web Games</h1></center>
+                    </div>
+                </div>
+            </div>
+
+            @*<div ng-controller="userIconController">
+                <img id="userIconShow" src="" />
+                <button ng-click="getUserIcon()">Fetch the user image</button>
+                <input id="userIconLoad" type="file" />
+                <button ng-click="postUserIcon()">Submit the user image to the API</button>
+            </div>*@
+
+            <div class="row">
+                <div class="col-lg-9">
+
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 frame" ng-controller="callUsers as user">
+                    <br />
+                    <center><h5 style="color:black">Online players</h5></center>
+                    <br />
+                    <ul class="list-group">
+                        <li class="list-group-item" ng-repeat="u in users"><img src="~/images/online2.png" height="10" width="10" class="pull-left"> {{u.name}}</li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
-        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 frame" ng-controller="callUsers as user">
-            <br />
-            <center><h5 style="color:black">Online players</h5></center>
-            <br />
-            <ul class="list-group">
-                <li class="list-group-item" ng-repeat="u in users"><img src="~/images/online2.png" height="10" width="10" class="pull-left"></img> {{u.name}}</li>
-            </ul>
-        </div>
+
+
+        <footer>
+            <div class="navbar navbar-inverse navbar-fixed-bottom">
+                <div class="container">
+                    <p class="navbar-text pull-left">&copy; @DateTime.Now.Year - Indie Web Games</p>
+                </div>
+            </div>
+        </footer>
     </div>
-</div>
 
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>

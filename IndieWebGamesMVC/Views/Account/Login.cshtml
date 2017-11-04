@@ -1,4 +1,6 @@
 ﻿@using IndieWebGamesMVC.Models
+@using Microsoft.Owin.Security
+@model IndieWebGamesMVC.Models.ExternalLoginListViewModel
 @{
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_LoginStyle.cshtml";
@@ -46,9 +48,7 @@
             <br />
             <div class="mail-form-agile">
                 <section id="socialLoginForm">
-                    @model IndieWebGamesMVC.Models.ExternalLoginListViewModel
-                    @using Microsoft.Owin.Security
-
+                    
                     @{
                         var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
 
