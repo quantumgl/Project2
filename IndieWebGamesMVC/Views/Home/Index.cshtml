@@ -16,7 +16,6 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/api")
-
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-static-top">
@@ -78,7 +77,7 @@
                                             var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
 
                                             <form method="post" action="~/Account/ExternalLogin">
-                                                <input hidden name="returnUrl" value="~/" />
+                                                <input hidden name="returnUrl" value="~/Users/Index.html" />
 
                                                 @ViewBag.Token
                                                 <div id="socialLoginList">

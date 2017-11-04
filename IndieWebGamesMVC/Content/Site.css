@@ -232,6 +232,12 @@ h6 {
     width: 100%;
 }
 
+    .at-login-form .btn-lgin:hover {
+        -webkit-transition-duration: 0.9s;
+        transition-duration: 0.9s;
+        background: rgba(91, 157, 214, 0.76);
+    }
+
 .at-login-form .signup-or-separator {
     background: none;
     height: 34px;
@@ -240,7 +246,7 @@ h6 {
 }
 
 .at-login-form .signup-or-separator--text {
-    background-color: #fff;
+    background-color: rgb(7, 63, 68);
     display: inline-block;
     padding: 8px;
 }
@@ -248,7 +254,7 @@ h6 {
 .at-login-form .h6 {
     font-size: 14px;
     font-weight: bold;
-    color: #757575;
+    color: #fff;
     line-height: 1.1;
     text-rendering: optimizelegibility;
 }
@@ -260,7 +266,7 @@ h6 {
 
 .at-login-form .form-control-form {
     padding: 13px 10px;
-    width: 92.5%;
+    width: 100%;
     font-size: 16px;
     outline: none;
     background: transparent;
@@ -275,8 +281,6 @@ h6 {
     color: #fff;
 }
 
-.at-login-form input[type="submit"] {
-}
 
 .at-login-form .frgt-pswd {
     margin: 5px 0 10px;
@@ -303,12 +307,11 @@ h6 {
     background-image: none;
     border: 1px solid #000;
     border-radius: 0px;
-    background-color: transparent;
 }
 
 .at-login-form .ta-l {
-    text-align: left;
     margin-top: 5px;
+    color:white;
 }
 
 
