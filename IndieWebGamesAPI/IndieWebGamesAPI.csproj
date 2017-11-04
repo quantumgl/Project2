@@ -228,6 +228,7 @@
     <Compile Include="Models\AspNetUserClaim.cs" />
     <Compile Include="Models\AspNetUserLogin.cs" />
     <Compile Include="Models\AuthenticateUserStatus.cs" />
+    <Compile Include="Models\AuthIndiePlayerProfile.cs" />
     <Compile Include="Models\AuthUserIcon.cs" />
     <Compile Include="Models\AuthViewModel.cs" />
     <Compile Include="Models\AzureStorageMultipartFormDataStreamProvider.cs" />
