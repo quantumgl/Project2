@@ -93,10 +93,10 @@ h6 {
 .frame {
     background: #e0e0de;
     height: 350px;
-    width:250px;
+    width: 250px;
     overflow: hidden;
     padding: 0;
-    float:right;
+    float: right;
 }
 
     .frame > div:last-of-type {
@@ -105,6 +105,7 @@ h6 {
         width: 100%;
         display: flex;
     }
+
     .frame > ul {
         list-style: none;
         max-height: 265px;
@@ -112,8 +113,9 @@ h6 {
         overflow: auto;
         padding: 0;
         text-indent: 10px;
-        text-align:right;
+        text-align: right;
     }
+
         .frame > ul > .list-group-item {
             background-color: transparent;
             border-top: 1px solid white;
@@ -223,11 +225,11 @@ h6 {
     background: #D65B88;
     color: #fff;
     cursor: pointer;
-    margin: 0 auto;
+    margin-top: 10px;
     font-family: "Asap-Regular";
     -webkit-transition-duration: 0.9s;
     transition-duration: 0.9s;
-    width:100%;
+    width: 100%;
 }
 
 .at-login-form .signup-or-separator {
@@ -274,9 +276,9 @@ h6 {
 }
 
 .at-login-form input[type="submit"] {
-    
 }
-    .at-login-form .frgt-pswd {
+
+.at-login-form .frgt-pswd {
     margin: 5px 0 10px;
     color: red;
 }
@@ -327,5 +329,3 @@ h6 {
 .blue-bg-nav {
     background-color: #1DB9EC;
     /*######################## LOGIN/SIGNUP PAGE  END ##################################*/
-
-
