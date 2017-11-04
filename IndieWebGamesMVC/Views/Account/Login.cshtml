@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_LoginStyle.cshtml";
+    ViewBag.Token = Html.AntiForgeryToken();
 }
 <div class="row">
     
@@ -13,7 +14,7 @@
                     <div class="mail-form-agile">
                         <form method="post" action="~/Account/Login">                        
                         
-                            @*@Html.AntiForgeryToken()*@
+                            @ViewBag.Token
 
                             @Html.ValidationSummary("", new { @class = "text-danger" })
 
@@ -55,7 +56,7 @@
                         <form method="post" action="~/Account/ExternalLogin">
                             <input hidden name="returnUrl" value="~/" />
                        
-                            @*@Html.AntiForgeryToken()*@
+                            @ViewBag.Token
                             <div id="socialLoginList">
                                 <p>
                                     @foreach (AuthenticationDescription p in loginProviders)
