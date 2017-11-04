@@ -1,4 +1,4 @@
-﻿using IndieWebGamesAPI.Models;
+using IndieWebGamesAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,10 +31,6 @@ namespace IndieWebGamesAPI.Controllers
             if (authUserIcon.authViewModel.isAuthentic)
             {
                 iconlist.Add(authUserIcon.userIcon);
-
-
-
-                //DBNull.profiles[authUserIcon.userIcon.Username].iconurl = store_icon_on_azure(authUserIcon.userIcon);
             }
         }
 
