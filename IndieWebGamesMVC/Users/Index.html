@@ -1,19 +1,21 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app="myModule">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-
     <link href="../Content/bootstrap.css" rel="stylesheet" />
     <!-- Our Custom CSS -->
     <link href="../Content/style.css" rel="stylesheet" />
     <link href="../Content/style4.css" rel="stylesheet" />
-    <!--<link href="../Content/style.css" rel="stylesheet" />-->
     <link href="../Content/font-awesome.css" rel="stylesheet" />
+
+    <script src="../Scripts/angular.js"></script>
+    <script src="../Scripts/app.js"></script>
+    <script src="../Scripts/directives.js"></script>
 </head>
-<body ng-app="myModule">
+<body>
     <div class="navbar navbar-default navbar-static-top">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -35,79 +37,8 @@
         </div>
     </div>
 
-    <div class="wrapper">
-        <!-- Sidebar Holder -->
-        <nav id="sidebar" class="active">
-            <div class="sidebar-header">
-                <strong>IWG</strong>
-            </div>
+        <user-selection></user-selection>
 
-            <ul class="list-unstyled components">
-                <li>
-                    <a href="#">
-                        <i class="glyphicon glyphicon-user"></i>
-                        Profile
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="glyphicon glyphicon-search"></i>
-                        Search
-                    </a>
-                    <a href="#">
-                        <i class="glyphicon glyphicon-comment"></i>
-                        Chat
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-gamepad"></i>
-                        Games
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        <!-- Page Content Holder -->
-        <div class="container body-content" style="padding:20px;">
-            <div class="row">
-                <div class="col-lg-12">
-                   <div class="jumbotron" styel="width:auto; height:600px;">
-                       <div class="custom-form">
-                           <div class="text-center bg-form">
-                               <div class="img-section">
-                                   <img src="http://lorempixel.com/200/200/nature/" class="imgCircle" alt="Profile picture">
-                                   <div class="col-lg-12">
-                                       <h5 class="text-right col-lg-12"><span class="glyphicon glyphicon-edit"></span> Edit Profile</h5>
-                                       <input type="checkbox" class="form-control" id="checker">
-                                   </div>
-                               </div>
-                               <input type="file" id="image-input" onchange="readURL(this);" accept="image/*" disabled class="form-control form-input Profile-input-file">
-                           </div>
-                           <div class="col-lg-12 col-md-12">
-                               <input type="text" class="form-control form-input" value="Abhinit Roy" placeholder="Name" disabled id="name">
-                               <span class="glyphicon glyphicon-user input-place"></span>
-                           </div>
-                           <div class="col-lg-12 col-md-12">
-                               <input type="text" class="form-control form-input" value="rgba@gmail.com" placeholder="Email ID">
-                               <span class="glyphicon glyphicon-envelope input-place"></span>
-                           </div>
-                           <div class="col-lg-12 col-md-12">
-                               <input type="text" class="form-control form-input" value="+91-00000000" placeholder="Phone Number">
-                               <span class="glyphicon glyphicon-earphone input-place"></span>
-                           </div>
-                           <div class="col-lg-12 col-md-12">
-                               <input type="text" class="form-control form-input" value="Chandigarh, India" placeholder="Address">
-                               <span class="glyphicon glyphicon-map-marker input-place"></span>
-                           </div>
-                           <div class="col-lg-12 col-md-12 text-center">
-                               <button class="btn btn-info btn-lg custom-btn" id="submit" disabled><span class="glyphicon glyphicon-save"></span> Save</button>
-                           </div>
-                       </div>
-                   </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <!-- Bootstrap Js CDN -->
@@ -127,42 +58,30 @@
             $('#fake-input').val($(this).val().replace("C:\\fakepath\\", ""));
         });
 
-            $('input[id=main-input]').change(function () {
-                console.log($(this).val());
-                var mainValue = $(this).val();
-                if (mainValue == "") {
-                    document.getElementById("fake-btn").innerHTML = "Choose File";
-                } else {
-                    document.getElementById("fake-btn").innerHTML = mainValue.replace("C:\\fakepath\\", "");
-                }
-            });
-
-            //    ===================== snippet for profile picture change ============================ //
-
-            function readURL(input) {
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-                    reader.onload = function (e) {
-                        $('.imgCircle')
-                            .attr('src', e.target.result)
-                            .width(200)
-                            .height(200);
-                    };
-                    reader.readAsDataURL(input.files[0]);
-                }
+        $('input[id=main-input]').change(function () {
+            console.log($(this).val());
+            var mainValue = $(this).val();
+            if (mainValue == "") {
+                document.getElementById("fake-btn").innerHTML = "Choose File";
+            } else {
+                document.getElementById("fake-btn").innerHTML = mainValue.replace("C:\\fakepath\\", "");
             }
+        });
 
-        //    =================================== ends here ============================================ //
+        //    ===================== snippet for profile picture change ============================ //
 
-        var checkme = document.getElementById('checker');
-        var userImage = document.getElementById('image-input');
-        var UserSend = document.getElementById('submit');
-        var editPic = document.getElementById('PicUpload');
-        checkme.onchange = function () {
-            UserSend.disabled = !this.checked;
-            userImage.disabled = !this.checked;
-            editPic.style.display = this.checked ? 'block' : 'none';
-        };
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('.imgCircle')
+                        .attr('src', e.target.result)
+                        .width(200)
+                        .height(200);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
     </script>
 </body>
 </html>
