@@ -18,13 +18,6 @@
     white-space: normal;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
-}
-
 .navbar-inverse {
     background: none;
     border-color: transparent;
@@ -125,5 +118,214 @@ h6 {
             background-color: transparent;
             border-top: 1px solid white;
         }
+
+.header-tp .navbar {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 0px;
+    border: 1px solid transparent;
+}
+
+.header-tp .navbar-default {
+    background-color: #1DB9EC;
+    border-color: transparent !important;
+}
+
+.header-tp .bdr li:nth-child(odd) {
+    border-left: 1px solid rgba(255, 255, 255, 0.44);
+}
+
+.header-tp .bdr li:nth-child(even) {
+    border-right: 1px solid rgba(255, 255, 255, 0.44);
+    border-left: 1px solid rgba(255, 255, 255, 0.44);
+}
+
+.header-tp .bdr li {
+    padding: 10px 0px;
+}
+
+    .header-tp .bdr li a {
+        color: #fff !important;
+    }
+
+.header-tp .pddr {
+    padding-top: 5px;
+}
+
+.header-tp .navbar-right {
+    float: right !important;
+    margin-right: 30px;
+}
+
+.header-tp .nav > li {
+    position: relative;
+    display: inline-block;
+}
+
+.btn-blu {
+    display: inline-block;
+    padding: 10px 35px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 0px;
+    background-color: #0D4459;
+    border-color: #0D4459;
+    color: #fff;
+}
+
+.mrgn-top {
+    margin-top: 15px;
+    margin-right: 15px;
+}
+
+.header-tp {
+    margin: 10px 0px;
+}
+
+/*######################## LOGIN/SIGNUP PAGE START ##################################*/
+.at-login-form .btn-fb {
+    display: inline-block;
+    padding: 18px 20px;
+    margin-top: 10px;
+    color: #fff;
+}
+
+.at-login-form .btn-gp {
+    display: inline-block;
+    padding: 18px 20px;
+    margin-top: 10px;
+    color: #fff;
+}
+
+.at-login-form .btn-lgin {
+    font-size: 18px;
+    padding: 10px 20px;
+    letter-spacing: 1.2px;
+    border: none;
+    text-transform: capitalize;
+    outline: none;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    background: #D65B88;
+    color: #fff;
+    cursor: pointer;
+    margin: 0 auto;
+    font-family: "Asap-Regular";
+    -webkit-transition-duration: 0.9s;
+    transition-duration: 0.9s;
+    width:100%;
+}
+
+.at-login-form .signup-or-separator {
+    background: none;
+    height: 34px;
+    position: relative;
+    text-align: center;
+}
+
+.at-login-form .signup-or-separator--text {
+    background-color: #fff;
+    display: inline-block;
+    padding: 8px;
+}
+
+.at-login-form .h6 {
+    font-size: 14px;
+    font-weight: bold;
+    color: #757575;
+    line-height: 1.1;
+    text-rendering: optimizelegibility;
+}
+
+.at-login-form .signup-or-separator hr {
+    margin: -25px auto 10px;
+    width: 100%;
+}
+
+.at-login-form .form-control-form {
+    padding: 13px 10px;
+    width: 92.5%;
+    font-size: 16px;
+    outline: none;
+    background: transparent;
+    border: 0px;
+    border-bottom-width: 0px;
+    border-bottom-style: none;
+    border-bottom-color: currentcolor;
+    border-bottom: 1px solid #fff;
+    border-radius: 0px;
+    font-family: "Asap-Regular";
+    letter-spacing: 1.6px;
+    color: #fff;
+}
+
+.at-login-form input[type="submit"] {
+    
+}
+    .at-login-form .frgt-pswd {
+    margin: 5px 0 10px;
+    color: red;
+}
+
+.at-login-form .btn-gst {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid #000;
+    border-radius: 0px;
+    background-color: transparent;
+}
+
+.at-login-form .ta-l {
+    text-align: left;
+    margin-top: 5px;
+}
+
+
+.at-login-form .modal-dialog {
+    margin: 30px auto;
+}
+
+.at-login-form .modal-content {
+    padding: 0px 10px;
+    background: rgb(7, 63, 68);
+}
+
+.at-login-form .modal-header {
+    padding: 10px 10px;
+    border-bottom: 0px solid #e5e5e5;
+}
+
+.blue-bg-nav {
+    background-color: #1DB9EC;
+    /*######################## LOGIN/SIGNUP PAGE  END ##################################*/
 
 

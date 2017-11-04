@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity
+@using IndieWebGamesMVC.Models
+
+<!DOCTYPE html>
 <html ng-app="myModule">
 <head>
     <meta charset="utf-8" />
@@ -28,20 +31,129 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+
+                @if (Request.IsAuthenticated)
+            {
+                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                {
+                        @Html.AntiForgeryToken()
+
+                        <span hidden id="name">@User.Identity.GetUserName()</span>
+                        <span hidden id="userid">@User.Identity.GetUserId()</span>
+
+                        <ul class="nav navbar-nav navbar-right" ng-controller="addUser" ng-init="online('@User.Identity.GetUserName()')">
+                            <li>
+                                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                            </li>
+                            <li><a href="javascript:document.getElementById('logoutForm').submit()">Logout</a></li>
+                        </ul>
+                    }
+
+                }
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a data-toggle="modal" data-target="#at-login">Login</a></li>
+                        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                    </ul>
+                }
             </div>
         </div>
     </div>
+
     <div class="container body-content">
-        @RenderBody()
-        
-        <footer>
-            <div class="navbar navbar-inverse navbar-fixed-bottom">
-                <div class="container">
-                    <p class="navbar-text pull-left">&copy; @DateTime.Now.Year - Indie Web Games</p>
+
+        <section class="at-login-form">
+            <div class="modal fade" id="at-login" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <section  id="socialLoginForm">
+                                @model IndieWebGamesMVC.Models.ExternalLoginListViewModel
+                                @using Microsoft.Owin.Security
+
+                                @{
+                                    var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
+
+                                    using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = "~/Users/Index.html" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+
+                                        foreach (AuthenticationDescription p in loginProviders)
+                                        {
+                                            if (p.Caption.Equals("Google"))
+                                            {
+                                                <button type="submit" class="btn-gp btn btn-danger btn-block" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType">
+                                                    <i class="fa fa-fw fa-google pull-left" aria-hidden="true"></i>
+                                                    Login with Google
+                                                </button> <br />
+
+                                            }
+                                            else if (p.Caption.Equals("Facebook"))
+                                            {
+                                                <button type="submit" class="btn-fb btn btn-primary btn-block" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType">
+                                                    <i class="fa fa-fw fa-facebook pull-left" aria-hidden="true"></i>
+                                                    Login with Facebook
+                                                </button> <br>
+                                            }
+                                        }
+                                    }
+                                }
+                            </section>
+
+                            <div class="signup-or-separator">
+                                <span class="h6 signup-or-separator--text">or</span>
+                                <hr>
+                            </div>
+                            <div ng-controller="addUser">
+                                <form method="post" action="~/Account/Login">
+
+                                    @Html.AntiForgeryToken()
+
+                                    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+                                    <div class="form-group">
+                                        <input type="text" class="form-control-form" ng-model="userName" placeholder="Username">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control-form" ng-model="Password" placeholder="Password">
+                                    </div>
+                                    <input hidden type="text" name="returnUrl" value="~/Users/Index.html" />
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox"> Remember me
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-md-offset-2">
+                                            <p class="frgt-pswd" data-toggle="modal" data-dismiss="modal" data-target="#at-reset-pswd">	Forgot Password ?</p>
+                                        </div>
+                                    </div>
+                                    <input type="submit" ng-click="login()" class="btn-lgin" value="Login"/>
+                                </form>
+                            </div>
+                            <br />
+                            <div class="modal-footer">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p class="ta-l">Don't have an account ? </p>
+                                    </div>
+                                    <div class="col-md-4 col-md-offset-2">
+                                        <button class="btn-gst" data-toggle="modal" data-dismiss="modal" data-target="#at-signup">Sign Up </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!--Modal body-->
+                    </div><!--Modal content-->
                 </div>
             </div>
-        </footer>
+        </section>
+        @RenderBody()
     </div>
 
     @Scripts.Render("~/bundles/jquery")
