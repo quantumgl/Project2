@@ -31,6 +31,10 @@ namespace IndieWebGamesAPI.Controllers
             if (authUserIcon.authViewModel.isAuthentic)
             {
                 iconlist.Add(authUserIcon.userIcon);
+
+
+
+                //DBNull.profiles[authUserIcon.userIcon.Username].iconurl = store_icon_on_azure(authUserIcon.userIcon);
             }
         }
 
