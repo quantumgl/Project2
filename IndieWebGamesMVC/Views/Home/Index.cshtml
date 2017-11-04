@@ -11,12 +11,12 @@
         </div>
     </div>
 
-    @*<div ng-controller="userIconController">
+    <div ng-controller="userIconController">
         <img id="userIconShow" src="" />
         <button ng-click="getUserIcon()">Fetch the user image</button>             
         <input id="userIconLoad" type="file" />
         <button ng-click="postUserIcon()">Submit the user image to the API</button>
-    </div>*@
+    </div>
 
     <div class="row">
         <div class="col-lg-9">
@@ -28,7 +28,7 @@
             <center><h5 style="color:black">Online players</h5></center>
             <br />
             <ul class="list-group">
-                <li class="list-group-item" ng-repeat="u in users"><img src="~/images/online2.png" height="10" width="10" class="pull-left"></img> {{u.name}}</li>
+                <li class="list-group-item" ng-repeat="u in users"><img src="~/images/online2.png" height="10" width="10" class="pull-left" /> {{u.name}}</li>
             </ul>
         </div>
     </div>

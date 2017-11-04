@@ -51,7 +51,7 @@ i, span {
 }
 
     #sidebar.active {
-        min-width: 80px;
+        min-width: 110px;
         max-width: 80px;
         text-align: center;
     }
@@ -293,11 +293,11 @@ a.article, a.article:hover {
 }
 
 .Profile-input-file {
-    height: 180px;
-    width: 180px;
-    left: 33%;
+    height: 210px;
+    width: 200px;
+    left: 40%;
     position: absolute;
-    top: 0px;
+    top: -10px;
     z-index: 999;
     opacity: 0 !important;
 }
@@ -357,12 +357,9 @@ a.article, a.article:hover {
 
 
 .custom-form {
-    float: left;
-    width: 100%;
     border-radius: 20px;
-    box-shadow: 0 0 16px #fff;
+    box-shadow: 0 0 16px #1440bf;
     overflow: hidden;
-    background: rgba(255,255,255,0.6);
 }
 
 .img-section {
@@ -377,19 +374,6 @@ a.article, a.article:hover {
     .img-section h4 {
         color: #fff;
     }
-
-#PicUpload {
-    color: #ffffff;
-    width: 180px;
-    height: 180px;
-    background: rgba(255,255,255,0.4);
-    padding: 100px;
-    position: absolute;
-    left: 30.5%;
-    border-radius: 50%;
-    display: none;
-    top: 15px;
-}
 
 .camera {
     font-size: 50px;
@@ -414,24 +398,6 @@ a.article, a.article:hover {
     color: #fff;
 }
 
-/*====== style for placeholder ========*/
-
-.form-control::-webkit-input-placeholder {
-    color: lightgray;
-    font-size: 18px;
-}
-
-.form-control:-moz-placeholder {
-    color: lightgray;
-    font-size: 18px;
-}
-
-.form-control::-moz-placeholder {
-    color: lightgray;
-    font-size: 18px;
-}
-
-.form-control:-ms-input-placeholder {
-    color: lightgray;
-    font-size: 18px;
+.form-group{
+    padding-top:20px;
 }
