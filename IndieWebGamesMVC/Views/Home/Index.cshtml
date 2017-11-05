@@ -11,10 +11,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="Indie Web Games, IndieWebGames, Online Games, Games, Gaming" />
     <title>@ViewBag.Title</title>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/api")
+    <div pub-key="pub-c-60960c01-6e08-4723-a808-e435878f9079" sub-key="sub-c-d0856b94-be43-11e7-b0ca-ee8767eb9c7d" id="pubnub"></div>
+   
+    <script src="http://cdn.pubnub.com/pubnub-3.1.min.js"></script>
+    <script src="http://pubnub.github.io/angular-js/scripts/pubnub-angular.js"></script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-static-top">
@@ -27,7 +33,7 @@
                 </button>
                 @Html.ActionLink("Indie Web Games", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
+            <div class="navbar-collapse collapse" ng-controller="addUser">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                 </ul>
@@ -46,8 +52,6 @@
                             </li>
                             <li><a href="javascript:document.getElementById('logoutForm').submit()">Logout</a></li>
                         </ul>
-
-
                     }
                    
                 }
@@ -269,8 +273,5 @@
                 </div>
             </div>
         }
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
 </body>
 </html>

@@ -1,4 +1,4 @@
-﻿var app = angular.module('dir', []);
+﻿var app = angular.module('dir', ['ngNotify']);
 
 app.directive('userSelection', function () {
     return {
@@ -10,7 +10,7 @@ app.directive('userSelection', function () {
                 this.tab = setTab;
             };
             this.isSelected = function (checkTab) {
-                return this.tab == checkTab;
+                return this.tab === checkTab;
             };
         },
         controllerAs: 'panel' //Alias
