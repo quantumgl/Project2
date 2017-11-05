@@ -6,6 +6,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using IndieWebGamesAPI.Models;
@@ -14,24 +15,19 @@ namespace IndieWebGamesAPI.Controllers
 {
     public class IndiePlayerProfilesController : ApiController
     {
-        private IndieWebGamesAPIDbContext db    = new IndieWebGamesAPIDbContext();
+        private IndieWebGamesAPIDbContext db = new IndieWebGamesAPIDbContext();
 
         // GET: api/IndiePlayerProfiles
-        public IEnumerable<IndiePlayerProfile> GetIndiePlayerProfiles()
+        public IQueryable<IndiePlayerProfile> GetIndiePlayerProfiles()
         {
-            IndiePlayerProfile profile1         = new IndiePlayerProfile { Id = 0, UserName = "Andres", Level = 0, PreferredGenre = Genres.Platformer };
-            List<IndiePlayerProfile> samplelist = new List<IndiePlayerProfile>();
-
-            samplelist.Add(profile1);
-
-            return samplelist;//db.IndiePlayerProfiles;
+            return db.IndiePlayerProfiles;
         }
 
         // GET: api/IndiePlayerProfiles/5
         [ResponseType(typeof(IndiePlayerProfile))]
-        public IHttpActionResult GetIndiePlayerProfile(string username)
+        public async Task<IHttpActionResult> GetIndiePlayerProfile(string Username)
         {
-            IndiePlayerProfile indiePlayerProfile = db.IndiePlayerProfiles.Find(profile => profile.UserName == username);
+            IndiePlayerProfile indiePlayerProfile = await db.IndiePlayerProfiles.FindAsync(Username);
             if (indiePlayerProfile == null)
             {
                 return NotFound();
@@ -42,7 +38,7 @@ namespace IndieWebGamesAPI.Controllers
 
         // PUT: api/IndiePlayerProfiles/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutIndiePlayerProfile(int id, IndiePlayerProfile indiePlayerProfile)
+        public async Task<IHttpActionResult> PutIndiePlayerProfile(int id, IndiePlayerProfile indiePlayerProfile)
         {
             if (!ModelState.IsValid)
             {
@@ -58,7 +54,7 @@ namespace IndieWebGamesAPI.Controllers
 
             try
             {
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -77,31 +73,33 @@ namespace IndieWebGamesAPI.Controllers
 
         // POST: api/IndiePlayerProfiles
         [ResponseType(typeof(IndiePlayerProfile))]
-        public IHttpActionResult PostIndiePlayerProfile(IndiePlayerProfile indiePlayerProfile)
+        public async Task<IHttpActionResult> PostIndiePlayerProfile(AuthIndiePlayerProfile authIndiePlayerProfile)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+            if (authIndiePlayerProfile.authViewModel.isAuthentic)
+            {
+                db.IndiePlayerProfiles.Add(authIndiePlayerProfile.indiePlayerProfile);
+                await db.SaveChangesAsync();
+            }
 
-            db.IndiePlayerProfiles.Add(indiePlayerProfile);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = indiePlayerProfile.Id }, indiePlayerProfile);
+            return CreatedAtRoute("DefaultApi", new { id = authIndiePlayerProfile.indiePlayerProfile.Id }, authIndiePlayerProfile.indiePlayerProfile);
         }
 
         // DELETE: api/IndiePlayerProfiles/5
         [ResponseType(typeof(IndiePlayerProfile))]
-        public IHttpActionResult DeleteIndiePlayerProfile(string username)
+        public async Task<IHttpActionResult> DeleteIndiePlayerProfile(int id)
         {
-            IndiePlayerProfile indiePlayerProfile = db.IndiePlayerProfiles.Find(profile => profile.UserName == username);
+            IndiePlayerProfile indiePlayerProfile = await db.IndiePlayerProfiles.FindAsync(id);
             if (indiePlayerProfile == null)
             {
                 return NotFound();
             }
 
             db.IndiePlayerProfiles.Remove(indiePlayerProfile);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
 
             return Ok(indiePlayerProfile);
         }

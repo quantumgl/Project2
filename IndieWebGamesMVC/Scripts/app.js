@@ -24,20 +24,6 @@
 
     refresh_status = function ($scope, $http, $log)
     {
-        UserStatus = function (name, code) {
-            this.Name = name;
-            this.codes = code;
-        }
-
-        AuthViewModel = function (name, userid) {
-            this.name = name;
-            this.userid = userid;
-        }
-
-        AuthenticateUserStatus = function (userName, code, userid) {
-            this.userStatus = new UserStatus(userName, code);
-            this.authViewModel = new AuthViewModel(userName, userid);
-        }
 
         authobj = new AuthenticateUserStatus($scope.name, 0, $scope.userid);
         //console.log("Problematic object: " + JSON.stringify(authobj));
@@ -94,24 +80,33 @@
             userIconGet($scope, $http, $log);
         };
         $scope.postUserIcon = function () {
-            do_the_post = function () {
-                console.log($scope.userIcon);
-                userIconPost($scope, $http, $log);
-            }
+            //do_the_post = function () {
+            //    console.log($scope.userIcon);
+            //    userIconPost($scope, $http, $log);
+            //}
 
             prep_the_image = function () {
-                $scope.userIcon = new Image();
-                $scope.userIcon.onload = do_the_post;
-                $scope.userIcon.src = file_reader.result;
+                //$scope.userIcon = new Image();
+                //$scope.userIcon.onload = do_the_post;
+                //console.log(file_reader.result);
+                $scope.userIcon = file_reader.result;
+                
+                //console.log($scope.userIcon);
+                userIconPost($scope, $http, $log);
 
             }
 
             var file = $scope.icon_path.files[0];
-            console.log(file);
+            //console.log(file);
             var file_reader = new FileReader();
 
             file_reader.onload = prep_the_image;
             file_reader.readAsDataURL(file);
+            //console.log("postUserIcon is being called");
+            //$scope.userIcon = file;
+            //userIconPost($scope, $http, $log);
+
+            
 
             //console.log(file);
 

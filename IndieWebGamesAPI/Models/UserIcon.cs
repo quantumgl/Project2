@@ -7,7 +7,9 @@ namespace IndieWebGamesAPI.Models
 {
     public class UserIcon
     {
-        public string Blob { get; set; }
+        public int Id { get; set; }
         public string Username { get; set; }
+        public string Blob { get; set; }
+        
     }
 }
