@@ -22,7 +22,10 @@ namespace IndieWebGamesAPI.Models
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
 
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
-        public List<IndiePlayerProfile> IndiePlayerProfiles { get; set; }
+        //public List<IndiePlayerProfile> IndiePlayerProfiles { get; set; }
+        public DbSet<UserIcon> UserIcons { get; set; }
+
+        public System.Data.Entity.DbSet<IndieWebGamesAPI.Models.IndiePlayerProfile> IndiePlayerProfiles { get; set; }
     }
 
     //public class MyEntity

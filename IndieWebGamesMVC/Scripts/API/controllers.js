@@ -1,7 +1,7 @@
 ﻿
 var servers = ["http://localhost:59596", "https://indiewebgamesapi.azurewebsites.net"];
 
-var serv = servers[1];
+var serv = servers[0];
 
 var userIconGet = function (scope, http, log) {
     http.get(serv + "/api/UserIcon/?Username=" + scope.name)
@@ -19,9 +19,9 @@ var userIconPost = function (scope, http, log) {
     //console.log(scope.userid);
     //console.log(scope.icon_path);
     //debugger;
-    console.log(scope.userIcon.src);
+    //console.log(scope.userIcon);
     //debugger;
-    authUserIcon = new AuthUserIcon(scope.name, scope.userIcon.src, scope.userid);
+    authUserIcon = new AuthUserIcon(scope.name, scope.userIcon, scope.userid);
 
     http.post(serv + "/api/UserIcon", authUserIcon).then(
         function (response) {

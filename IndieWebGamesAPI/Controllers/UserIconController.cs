@@ -1,16 +1,20 @@
-﻿using IndieWebGamesAPI.Models;
+using IndieWebGamesAPI.Models;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
+
 namespace IndieWebGamesAPI.Controllers
 {
     public class UserIconController : ApiController
     {
-        static List<UserIcon> iconlist = new List<UserIcon>();
+        IndieWebGamesAPIDbContext db = new IndieWebGamesAPIDbContext();
+
+        //static List<UserIcon> iconlist = new List<UserIcon>();
         // GET api/<controller>
         public IEnumerable<string> Get()
         {
@@ -20,9 +24,10 @@ namespace IndieWebGamesAPI.Controllers
         // GET api/<controller>/5
         public string Get(string Username)
         {
+            
+            var result = db.UserIcons.Where(uc => uc.Username == Username).ToList();
 
-            var icon = iconlist.Find(uc => uc.Username == Username);
-            return icon == null? "" : icon.Blob;
+            return result.Count == 0? "": result[0].Blob;
         }
 
         // POST api/<controller>
@@ -30,11 +35,8 @@ namespace IndieWebGamesAPI.Controllers
         {
             if (authUserIcon.authViewModel.isAuthentic)
             {
-                iconlist.Add(authUserIcon.userIcon);
-
-
-
-                //DBNull.profiles[authUserIcon.userIcon.Username].iconurl = store_icon_on_azure(authUserIcon.userIcon);
+                db.UserIcons.Add(authUserIcon.userIcon);
+                db.SaveChanges();
             }
         }
 

@@ -1,13 +1,13 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
 namespace IndieWebGamesAPI.Models
 {
-    public class AuthUserIcon
+    public class AuthIndiePlayerProfile
     {
-        public UserIcon userIcon { get; set; }
+        public IndiePlayerProfile indiePlayerProfile { get; set; }
         public AuthViewModel authViewModel { get; set; }
     }
 }
