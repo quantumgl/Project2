@@ -3,7 +3,7 @@
 app.directive('userSelection', function () {
     return {
         restrict: 'E',
-        templateUrl: 'user-selection.html',
+        templateUrl: '/Users/user-selection.html',
         controller: function () {
             this.tab = 1;
             this.selectTab = function (setTab) {
