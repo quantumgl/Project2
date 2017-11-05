@@ -92,7 +92,8 @@
                 $scope.userIcon = file_reader.result;
                 
                 //console.log($scope.userIcon);
-                userIconPost($scope, $http, $log);
+                console.log(file_reader.result);
+                //userIconPost($scope, $http, $log);
 
             }
 

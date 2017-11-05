@@ -1,0 +1,138 @@
+﻿<section class="at-login-form">
+    <div class="modal fade" id="at-login" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <section id="socialLoginForm">
+                        <form method="post" action="Account/ExternalLogin">
+                            <input hidden name="returnUrl" value="~/" />
+
+
+                            <div id="socialLoginList">
+                                <p>
+
+                                    <button type="submit" class="btn-gp btn btn-danger btn-block" id="Google" name="provider" value="Google">
+                                        <i class="fa fa-fw fa-google pull-left" aria-hidden="true"></i>
+                                        Login with Google
+                                    </button>
+
+                                    <button type="submit" class="btn-fb btn btn-primary btn-block" id="Facebook" name="provider" value="Facebook">
+                                        <i class="fa fa-fw fa-facebook pull-left" aria-hidden="true"></i>
+                                        Login with Facebook
+                                    </button>
+
+                                </p>
+                            </div>
+
+                        </form>
+                    </section>
+
+                    <div class="signup-or-separator">
+                        <span class="h6 signup-or-separator--text">or</span>
+                        <hr>
+                    </div>
+
+                    <div>
+                        <form method="post" action="Account/Login">
+
+
+                            <div class="form-group">
+                                <input type="text" class="form-control-form" ng-model="userName" placeholder="Username" name="Username" />
+                            </div>
+                            <input type="password" class="form-control-form" ng-model="Password" name="Password" placeholder="Password" />
+                            <br />
+                            <input hidden type="text" name="returnUrl" value="~/" />
+
+                            <input type="submit" value="Log in" class="btn-lgin" ng-click="login()">
+                        </form>
+                    </div>
+
+                    <br />
+                    <div class="modal-footer">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="ta-l">Don't have an account ? </p>
+                            </div>
+                            <div class="col-md-4 col-md-offset-2">
+                                <button class="btn-gst btn btn-primary" data-toggle="modal" data-dismiss="modal" data-target="#at-signup-filling">Sign Up </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> <!--Modal body-->
+            </div><!--Modal content-->
+        </div>
+    </div>
+</section>
+
+<!-- MODAL SIGNUP FORM FILLING -->
+<div class="modal fade" id="at-signup-filling" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <section class="at-login-form">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <section id="socialLoginForm">
+                        <form method="post" action="Account/ExternalLogin">
+                            <input hidden name="returnUrl" value="~/" />
+
+
+                            <div id="socialLoginList">
+                                <p>
+                                    <button type="submit" class="btn-gp btn btn-danger btn-block" id="Google" name="provider" value="Google">
+                                        <i class="fa fa-fw fa-google pull-left" aria-hidden="true"></i>
+                                        Signup with Google
+                                    </button> <br>
+                                    <button type="submit" class="btn-fb btn btn-primary btn-block" id="Facebook" name="provider" value="Facebook">
+                                        <i class="fa fa-fw fa-facebook pull-left" aria-hidden="true"></i>
+                                        Signup with Facebook
+                                    </button> <br>
+
+                                </p>
+                            </div>
+
+                        </form>
+
+                    </section>
+                    <div class="signup-or-separator">
+                        <span class="h6 signup-or-separator--text">or</span>
+                        <hr>
+                    </div>
+                    <div>
+                        <form method="post" action="Account/Register">
+
+
+                            <input type="email" class="form-control-form" placeholder="Email" name="Email" required />
+
+                            <input type="text" class="form-control-form" placeholder="Username" name="Name" required />
+
+                            <input type="password" class="form-control-form" name="Password" placeholder="Password" required />
+
+                            <input type="password" class="form-control-form" id="ConfirmPassword" name="ConfirmPassword" placeholder="Confirm Password" required />
+
+                            <input hidden type="text" name="returnUrl" value="~/" />
+
+                            <input type="submit" value="Signup" class="btn-lgin">
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="ta-l">Already a Member? </p>
+                        </div>
+                        <div class="col-md-4 col-md-offset-2">
+                            <button class="btn-gst btn btn-primary" data-toggle="modal" data-dismiss="modal" data-target="#at-login">Login</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- MODAL SIGNUP FORM FILLING -->

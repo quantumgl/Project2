@@ -34,6 +34,13 @@
                     Games
                 </a>
             </li>
+
+            <li ng-class="{active:panel.isSelected(5)}">
+                <a ng-click="panel.selectTab(5)">
+                    <i class="fa fa-gamepad fa-2x"></i>
+                    Creator Portal
+                </a>
+            </li>
         </ul>
     </nav>
     <!-- Page Content Holder -->
@@ -70,13 +77,35 @@
                 </div>
 
                 <div class="jumbotron" styel="width:auto; height:600px;" ng-show="panel.isSelected(3)">
-                   <div class="custom-form">
-                        
-                   </div>
+                    <div class="row">
+                        <div class="col-lg-9">
+
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 frame" ng-controller="callUsers as user">
+                            <br />
+                            <center><h5 style="color:black">Online players</h5></center>
+                            <br />
+                            <ul class="list-group">
+                                <li class="list-group-item" ng-repeat="u in users"><img src="~/images/online2.png" height="10" width="10" class="pull-left"> {{u.name}}</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="jumbotron" styel="width:auto; height:600px;" ng-show="panel.isSelected(4)">
-                    <h1>THIS IS PANEL 4</h1>
+                    <canvas id="gamePlayer" width="200" height="100"></canvas>
+                    hello?
+
+                </div>
+
+                <div class="jumbotron" styel="width:auto; height:600px;" ng-show="panel.isSelected(5)">
+                    <div ng-controller="userIconController">
+                        <img id="userIconShow" src="" />
+                        <button ng-click="getUserIcon()">Fetch the user image</button>
+                        <input id="userIconLoad" type="file" />
+                        <button ng-click="postUserIcon()">Submit the user image to the API</button>
+                    </div>
                 </div>
 
             </div>
