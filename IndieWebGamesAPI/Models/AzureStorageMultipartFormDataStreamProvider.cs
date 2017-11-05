@@ -12,7 +12,7 @@ namespace IndieWebGamesAPI.Models
     public class AzureStorageMultipartFormDataStreamProvider : MultipartFormDataStreamProvider
     {
         private readonly CloudBlobContainer _blobContainer;
-        private readonly string[] _supportedMimeTypes = { "image/png", "image/jpeg", "image/jpg" };
+        private readonly string[] _supportedMimeTypes = { "image/png", "image/jpeg", "image/jpg", "audio/mp3", "audio/mpeg" };
 
         public AzureStorageMultipartFormDataStreamProvider(CloudBlobContainer blobContainer) : base("azure")
         {
@@ -28,7 +28,7 @@ namespace IndieWebGamesAPI.Models
 
             if (!_supportedMimeTypes.Contains(headers.ContentType.ToString().ToLower()))
             {
-                throw new NotSupportedException("Only jpeg and png are supported");
+                throw new NotSupportedException("Only mp3, jpeg and png are supported");
             }
 
             // Generate a new filename for every new blob
