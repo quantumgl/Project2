@@ -5,8 +5,9 @@ using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
-
+using System.Web.Http.Description;
 
 namespace IndieWebGamesAPI.Controllers
 {
@@ -22,12 +23,24 @@ namespace IndieWebGamesAPI.Controllers
         }
 
         // GET api/<controller>/5
-        public string Get(string Username)
-        {
+        //public string Get(string Username)
+        //{
             
-            var result = db.UserIcons.Where(uc => uc.Username == Username).ToList();
+        //    var result = db.UserIcons.Where(uc => uc.Username == Username).ToList();
 
-            return result.Count == 0? "": result[0].Blob;
+        //    return result.Count == 0? "": result[0].Blob;
+        //}
+
+        [ResponseType(typeof(UserIcon))]
+        public async Task<IHttpActionResult> GetUserIcon(string Username)
+        {
+            UserIcon userIcon = await db.UserIcons.FindAsync(Username);
+            if (userIcon == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(userIcon.Blob);
         }
 
         // POST api/<controller>
