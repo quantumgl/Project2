@@ -1,4 +1,4 @@
-﻿var app = angular.module('dir', ['ngNotify']);
+﻿var app = angular.module('dir', []);
 
 app.directive('userSelection', function () {
     return {
