@@ -200,15 +200,14 @@ h6 {
 /*######################## LOGIN/SIGNUP PAGE START ##################################*/
 .at-login-form .btn-fb {
     display: inline-block;
-    padding: 18px 20px;
+    padding: 13px 20px;
     margin-top: 10px;
     color: #fff;
 }
 
 .at-login-form .btn-gp {
     display: inline-block;
-    padding: 18px 20px;
-    margin-top: 10px;
+    padding: 13px 20px;
     color: #fff;
 }
 
@@ -265,7 +264,7 @@ h6 {
 }
 
 .at-login-form .form-control-form {
-    padding: 13px 10px;
+    padding: 20px 10px;
     width: 100%;
     font-size: 16px;
     outline: none;
@@ -305,8 +304,8 @@ h6 {
     -ms-user-select: none;
     user-select: none;
     background-image: none;
-    border: 1px solid #000;
-    border-radius: 0px;
+    border-radius: 6px;
+    color: #fff;
 }
 
 .at-login-form .ta-l {
@@ -327,6 +326,12 @@ h6 {
 .at-login-form .modal-header {
     padding: 10px 10px;
     border-bottom: 0px solid #e5e5e5;
+}
+
+.at-login-form .modal-footer {
+    padding: 15px;
+    text-align: right;
+    border:none;
 }
 
 .blue-bg-nav {
