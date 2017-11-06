@@ -73,8 +73,26 @@
                 </div>
 
                 <!--SEARCH PANEL-->
+                <div ng-app="myModule" ng-controller="SearchController">
                 <div class="jumbotron" styel="width:auto; height:600px;" ng-show="panel.isSelected(2)">
                     <h1>THIS IS PANEL 2</h1>
+                    <div class="bar">
+                        <!-- Create a binding between the searchString model and the text field -->
+                        <input type="text" ng-model="searchString" placeholder="Enter your search terms" />
+                    </div>
+
+                    <ul>
+                        <!-- Render a li element for every entry in the items array. Notice
+             the custom search filter "searchFor". It takes the value of the
+             searchString model as an argument.
+         -->
+                        <li ng-repeat="i in items | searchFor:searchString">
+                            <a href="{{i.url}}"><img ng-src="{{i.image}}" /></a>
+                            <p>{{i.title}}</p>
+                        </li>
+                    </ul>
+                    <div/>
+                </div>
                 </div>
 
                 <!--CHAT PANEL-->
