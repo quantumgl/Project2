@@ -21,13 +21,13 @@ var IndiePlayerProfile = function (profileName)
 {
     this.Username = profileName;
     this.Bio = "";
-    this.Iconurl = "";
+    this.Iconurl = "http://robohash.org/users?size=200x200&set=set2";
 }
 
 var AuthIndiePlayerProfile = function (name, userid)
 {
-    this.indiePlayerProfile = new IndiePlayerProfile(name)
-    this.authViewModel      = new AuthViewModel(name, userid)
+    this.indiePlayerProfile = new IndiePlayerProfile(name);
+    this.authViewModel = new AuthViewModel(name, userid);
 }
 
 
