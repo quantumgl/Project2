@@ -19,12 +19,12 @@ body {
 }
 
 .navbar-inverse {
-    background: none;
+    background-color: #6677C2;
     border-color: transparent;
 }
 
     .navbar-inverse .navbar-nav > li > a {
-        color: #9d9d9d;
+        color: #fff;
     }
 
 footer {
@@ -585,7 +585,7 @@ a.article, a.article:hover {
     padding-right: 60px;
     padding-left: 60px;
     width:auto;
-    height:700px;
+    height:1000px;
 }
 .full-width {
     float: left;
@@ -689,6 +689,7 @@ a.article, a.article:hover {
     border-radius: 20px;
     box-shadow: 0 0 16px #1440bf;
     overflow: hidden;
+    height: 900px;
 }
 
 .img-section {
