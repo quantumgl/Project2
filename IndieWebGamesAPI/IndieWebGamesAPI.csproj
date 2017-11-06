@@ -219,7 +219,6 @@
     <Compile Include="Models\SearchResult.cs" />
     <Compile Include="Controllers\SearchResultController.cs" />
     <Compile Include="Controllers\UploadIconController.cs" />
-    <Compile Include="Controllers\UserIconController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\UserStatusController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -233,14 +232,12 @@
     <Compile Include="Models\AspNetUserLogin.cs" />
     <Compile Include="Models\AuthenticateUserStatus.cs" />
     <Compile Include="Models\AuthIndiePlayerProfile.cs" />
-    <Compile Include="Models\AuthUserIcon.cs" />
     <Compile Include="Models\AuthViewModel.cs" />
     <Compile Include="Models\AzureStorageMultipartFormDataStreamProvider.cs" />
     <Compile Include="Models\IconName.cs" />
     <Compile Include="Models\IdentityDataModelCode.cs" />
     <Compile Include="Models\IndiePlayerProfile.cs" />
     <Compile Include="Models\IndieWebGamesAPIDbContext.cs" />
-    <Compile Include="Models\UserIcon.cs" />
     <Compile Include="Models\UserStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

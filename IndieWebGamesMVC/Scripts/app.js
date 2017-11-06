@@ -3,13 +3,6 @@
 
     var debug = 1;
     var lock = 0;
-    //var intervalId = window.setInterval(myCallback, 1000);
-    //function myCallback() {
-    //    if (debug == 1) {
-    //        console.log("Turning this thing on");
-    //    }
-    //}
-    //Proper angularjs syntax?
 
     
     
@@ -32,40 +25,6 @@
             .then(function (response) {
                 $scope.user_details = response.data;
             });               
-    }
-
-    authenticate = function ($scope, $http, $log) {
-        
-        authobj = {
-            "userStatus":
-            {
-                "Name": $scope.name,
-                "codes": 0
-            },
-            "authViewModel": {
-                "Name": $scope.name,
-                "userid": $scope.userid
-
-            }
-        };
-        console.log("Problematic object: " + authobj);
-        $http.post("http://indiewebgamesapi.azurewebsites.net/api/AuthViewModelTest", authobj)
-        //$http.post("http://localhost:59596/api/AuthViewModelTest", authobj)
-            .then(function (response) {
-                $scope.user_details = response.data;
-                $log.info(response);
-            }, function (response) {
-                console.log(response)
-            }
-        );
-    }
-
-    checkauth = function ($scope, $http, $log) {
-        $http.get("http://indiewebgamesapi.azurewebsites.net/api/AuthViewModelTest")
-            .then(function (response) {
-                $scope.user_details = response.data;
-                //$log.info(response);
-            }); 
     }
 
 
@@ -118,12 +77,12 @@
     app.controller('addUser', function ($scope, $http, $rootScope) {
 
         //This is for getting the users that get authenticated with social logins
-        $scope.online = function (name) {
+        //$scope.online = function (name) {
             
-                $rootScope.name = name;
-                $http.get("http://indiewebgamesapi.azurewebsites.net/api/Users?UserName=" + name);
+        //        $rootScope.name = name;
+        //        $http.get("http://indiewebgamesapi.azurewebsites.net/api/Users?UserName=" + name);
 
-        };
+        //};
 
         $scope.login = function () {
             console.log("lmao");
@@ -143,8 +102,8 @@
 
         if (lock == 0) {
             lock = 1;
-            //$scope.name = document.getElementById("name").innerHTML;
-           // $scope.userid = document.getElementById("userid").innerHTML;
+            $scope.name = document.getElementById("name").innerHTML;
+            $scope.userid = document.getElementById("userid").innerHTML;
             console.log("Username: " + $rootScope.name);
             //console.log("Userid: " + $scope.userid);
             var intervalId = window.setInterval(myCallback, 1000);
@@ -158,6 +117,52 @@
         }
     });
 
-    
+    app.controller("creatorController",
+
+        function creatorController($scope, $http) {
+
+            $scope.bgimg;
+            $scope.bgm;
+            $scope.levelname;
+
+        });
+
+
+    app.directive("fileread", [
+        function () {
+            return {
+                scope: {
+                    fileread: "="
+                },
+                link: function (scope, element, attributes) {
+                    element.bind("change", function (changeEvent) {
+                        var reader = new FileReader();
+                        reader.onload = function (loadEvent) {
+                            scope.$apply(function () {
+                                scope.fileread = loadEvent.target.result;
+                            });
+                        }
+                        reader.readAsDataURL(changeEvent.target.files[0]);
+                    });
+                }
+            }
+        }
+    ]);
+
+    app.directive("textread", [
+        function () {
+            return {
+                scope: {
+                    textread: "="
+                },
+                link: function (scope, element, attributes) {
+                    element.bind("change", function (changeEvent) {
+                        scope.textread = changeEvent.target.value;
+                    });
+                }
+            }
+        }
+
+    ]);
     
 })();
