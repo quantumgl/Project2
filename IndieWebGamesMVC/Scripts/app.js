@@ -103,13 +103,15 @@ app.controller("profileController",
             $rootScope.username = document.getElementById("name").innerHTML;
             console.log("Hello nurse");
 
-            $http.get("http://localhost/api/IndiePlayerProfiles?Username=" + "testname")//$rootScope.username)
+            $http.get("http://localhost/api/IndiePlayerProfiles?Username=" + $rootScope.username)
                 .then(function (response) {
                     console.log("success", response);
                     $rootScope.indieProfile = response.data;
                 },
                 function (error) {
                     console.log("error", error);
+                    //$rootScope.indieProfile = IndieProfile($rootScope.username);
+
                 }
             )
         };
