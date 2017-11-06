@@ -11,7 +11,7 @@ namespace IndieWebGamesAPI.Models
         public string Username { get; set; }
         public string Bio { get; set; }
         public string Iconurl { get; set; }
-        public virtual List<Level> CreatedLevels { get; set; }
-        public virtual List<IndiePlayerProfile> FollowedPlayers { get; set; }
+        public virtual ICollection<Level> Levels { get; set; }
+        public virtual ICollection<IndiePlayerProfile> FollowedPlayers { get; set; }
     }
 }
