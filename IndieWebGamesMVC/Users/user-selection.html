@@ -77,7 +77,7 @@
 
                 <!--SEARCH PANEL-->
 
-                <div class="jumbotron" styel="width:auto; height:600px;" ng-show="panel.isSelected(2)">
+                <div class="jumbotron"  ng-show="panel.isSelected(2)">
 
                     <h1>THIS IS PANEL 2</h1>
                     <div ng-controller="SearchController" class="bar">
@@ -172,7 +172,7 @@
                         <div>
                             <span>Background Music</span>
                             <input type="file" fileread="bgm" />
-                            <audio src="{{bgm}}" controls="controls">
+                            <audio src="{{bgm}}" controls="controls" controlsList="nodownload">
                                 <source src="{{bgm}}" type="audio/mp3" />
                             </audio>
 
