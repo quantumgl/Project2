@@ -20,7 +20,7 @@ var AuthenticateUserStatus = function (userName, code, userid)
 var IndiePlayerProfile = function (profileName)
 {
     this.Username = profileName;
-    this.Bio = "";
+    this.Bio = "About Me";
     this.Iconurl = "";
 }
 
