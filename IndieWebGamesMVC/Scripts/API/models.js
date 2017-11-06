@@ -16,15 +16,3 @@ var AuthenticateUserStatus = function (userName, code, userid)
     this.userStatus = new UserStatus(userName, code);
     this.authViewModel = new AuthViewModel(userName, userid);
 }
-
-var UserIcon = function (image, name)
-{
-    this.Blob = image;
-    this.Username = name;
-}
-
-var AuthUserIcon = function (userName, image, userid)
-{
-    this.userIcon = new UserIcon(image, userName);
-    this.authViewModel = new AuthViewModel(userName, userid);
-}
