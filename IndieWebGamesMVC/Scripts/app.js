@@ -3,31 +3,10 @@
 var debug = 1;
 var lock = 0;
 
-refresh_users = function (scope, http, log) {
-    //console.log("Refresh status being called");
-    http.get("https://indiewebgamesapi.azurewebsites.net/api/Users")
-        .then(function (response) {
-            //console.log("Response list from API: " + JSON.stringify(response));
-            scope.users = response.data;
-        });
-}
-
-refresh_status = function ($scope, $http, $log) {
-
-    authobj = new AuthenticateUserStatus($scope.name, 0, $scope.userid);
-    //console.log("Problematic object: " + JSON.stringify(authobj));
-    $http.post("https://indiewebgamesapi.azurewebsites.net/api/Users", authobj)
-        //$http.post("http://localhost:59596/api/AuthViewModelTest", authobj)
-        .then(function (response) {
-            $scope.user_details = response.data;
-        });
-}
-
-
-    app.controller('userIconController', function ($scope, $http, $log) {
-        $scope.name = document.getElementById("name").innerHTML;
-        $scope.userid = document.getElementById("userid").innerHTML;
-        $scope.icon_path = document.getElementById("userIconLoad");
+app.controller('userIconController', function ($scope, $http, $log) {
+    $scope.name = document.getElementById("name").innerHTML;
+    $scope.userid = document.getElementById("userid").innerHTML;
+    $scope.icon_path = document.getElementById("userIconLoad");
 
     //$scope.userIcon = ;
 
@@ -40,15 +19,15 @@ refresh_status = function ($scope, $http, $log) {
         //    userIconPost($scope, $http, $log);
         //}
 
-            prep_the_image = function () {
-                //$scope.userIcon = new Image();
-                //$scope.userIcon.onload = do_the_post;
-                //console.log(file_reader.result);
-                $scope.userIcon = file_reader.result;
-                
-                //console.log($scope.userIcon);
-                console.log(file_reader.result);
-                //userIconPost($scope, $http, $log);
+        prep_the_image = function () {
+            //$scope.userIcon = new Image();
+            //$scope.userIcon.onload = do_the_post;
+            //console.log(file_reader.result);
+            $scope.userIcon = file_reader.result;
+
+            //console.log($scope.userIcon);
+            console.log(file_reader.result);
+            //userIconPost($scope, $http, $log);
 
         }
 
@@ -72,13 +51,13 @@ refresh_status = function ($scope, $http, $log) {
 
 app.controller('addUser', function ($scope, $http, $rootScope) {
 
-        //This is for getting the users that get authenticated with social logins
-        //$scope.online = function (name) {
-            
-        //        $rootScope.name = name;
-        //        $http.get("http://indiewebgamesapi.azurewebsites.net/api/Users?UserName=" + name);
+    //This is for getting the users that get authenticated with social logins
+    //$scope.online = function (name) {
 
-        //};
+    //        $rootScope.name = name;
+    //        $http.get("http://indiewebgamesapi.azurewebsites.net/api/Users?UserName=" + name);
+
+    //};
 
     $scope.login = function () {
         console.log("lmao");
@@ -91,75 +70,121 @@ app.controller('callUsers', function ($scope, $http, $log, $rootScope) {
 
     function myCallback() {
         if (debug == 1) {
-            refresh_status($scope, $http);
-            refresh_users($scope, $http);
+            //refresh_status($scope, $http);
+            //refresh_users($scope, $http);
         }
     }
 
-        if (lock == 0) {
-            lock = 1;
-            $scope.name = document.getElementById("name").innerHTML;
-            $scope.userid = document.getElementById("userid").innerHTML;
-            console.log("Username: " + $rootScope.name);
-            //console.log("Userid: " + $scope.userid);
-            var intervalId = window.setInterval(myCallback, 1000);
+    if (lock == 0) {
+        lock = 1;
+        $scope.name = document.getElementById("name").innerHTML;
+        $scope.userid = document.getElementById("userid").innerHTML;
+        console.log("Username: " + $rootScope.name);
+        //console.log("Userid: " + $scope.userid);
+        var intervalId = window.setInterval(myCallback, 1000);
 
 
-            //authenticate($scope, $http, $log);
-            //checkauth($scope, $http, $log);
-        }
-        else {
-            console.log("Hunch confirmed");
-        }
-    });
-
-    app.controller("creatorController",
-
-        function creatorController($scope, $http) {
-
-            $scope.bgimg;
-            $scope.bgm;
-            $scope.levelname;
-
-        });
+        //authenticate($scope, $http, $log);
+        //checkauth($scope, $http, $log);
+    }
+    else {
+        console.log("Hunch confirmed");
+    }
+});
 
 
-    app.directive("fileread", [
-        function () {
-            return {
-                scope: {
-                    fileread: "="
+app.controller("profileController",
+
+    function profileController($scope, $http, $rootScope) {
+
+
+
+        $scope.loadprofile = function () {
+            $rootScope.username = document.getElementById("name").innerHTML;
+            console.log("Hello nurse");
+
+            $http.get("http://localhost/api/IndiePlayerProfiles?Username=" + $rootScope.username)
+                .then(function (response) {
+                    console.log("success", response);
+                    $rootScope.indieProfile = response.data;
                 },
-                link: function (scope, element, attributes) {
-                    element.bind("change", function (changeEvent) {
-                        var reader = new FileReader();
-                        reader.onload = function (loadEvent) {
-                            scope.$apply(function () {
-                                scope.fileread = loadEvent.target.result;
-                            });
-                        }
-                        reader.readAsDataURL(changeEvent.target.files[0]);
-                    });
-                }
-            }
-        }
-    ]);
+                function (error) {
+                    console.log("error", error);
+                    //$rootScope.indieProfile = IndieProfile($rootScope.username);
 
-    app.directive("textread", [
-            function () {
-                return {
-                    scope: {
-                        textread: "="
-                    },
-                    link: function (scope, element, attributes) {
-                        element.bind("change", function (changeEvent) {
-                            scope.textread = changeEvent.target.value;
-                        });
+                }
+            )
+        };
+
+});
+
+app.controller("creatorController",
+
+    function creatorController($scope, $http) {
+
+        $scope.bgimg;
+        $scope.bgm;
+        $scope.levelname;
+
+        $scope.uploadImage = function () {
+            var fd = new FormData();
+            var imgBlob = dataURItoBlob($scope.uploadme);
+            fd.append('file', imgBlob);
+            $http.post(
+                'imageURL',
+                fd, {
+                    transformRequest: angular.identity,
+                    headers: {
+                        'Content-Type': undefined
                     }
                 }
-            }
+            )
+                .success(function (response) {
+                    console.log('success', response);
+                })
+                .error(function (response) {
+                    console.log('error', response);
+                });
+        }
+});
 
-    ]);
+
+app.directive("fileread", [
+    function () {
+        return {
+            scope: {
+                fileread: "="
+            },
+            link: function (scope, element, attributes) {
+                element.bind("change", function (changeEvent) {
+                    var reader = new FileReader();
+                    reader.onload = function (loadEvent) {
+                        scope.$apply(function () {
+                            scope.fileread = loadEvent.target.result;
+                        });
+                    }
+                    reader.readAsDataURL(changeEvent.target.files[0]);
+                });
+            }
+        }
+    }
+]);
+
+app.directive("textread", [
+    function () {
+        return {
+            scope: {
+                textread: "="
+            },
+            link: function (scope, element, attributes) {
+                element.bind("change", function (changeEvent) {
+                    scope.textread = changeEvent.target.value;
+                });
+            }
+        }
+    }
+
+]);
 
 app.controller("chatCtrl", function ($scope, $http, $rootScope) {
     /***
