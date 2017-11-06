@@ -18,8 +18,7 @@ namespace IndieWebGamesAPI.Controllers
         private IndieWebGamesAPIDbContext db = new IndieWebGamesAPIDbContext();
 
         // GET: api/IndiePlayerProfiles
-        public IQueryable<IndiePlayerProfile> GetIndiePlayerProfiles()
-        {
+        public IQueryable<IndiePlayerProfile> GetIndiePlayerProfiles()        {
             return db.IndiePlayerProfiles;
         }
 
