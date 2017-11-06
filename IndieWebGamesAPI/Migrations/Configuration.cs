@@ -18,7 +18,12 @@ namespace IndieWebGamesAPI.Migrations
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data. E.g.
-            //
+            //context.IndiePlayerProfiles.Add(new Models.IndiePlayerProfile
+            //{
+            //    Username = "testname",
+            //    Bio = "testbio",
+            //    Iconurl = "testurl.com"
+            //});
             //    context.People.AddOrUpdate(
             //      p => p.FullName,
             //      new Person { FullName = "Andrew Peters" },
