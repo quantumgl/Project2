@@ -139,28 +139,18 @@
                         <div>
                             <span>Background Image</span>
                             <input type="file" fileread="bgimg" />
-                            <img src="{{bgimg}}" width="100" height="50" alt="Image preview...">
-                            <br />
-                            <p>
-                                Image dataURI:
-                                <pre>{{bgimg}}</pre>
-                            </p>
-                            <br />
+                            <img src="{{bgimg}}" width="100" height="50" alt="Image preview...">                           
                             <button ng-click="uploadbgimg()">upload background image</button>
                          </div>
+                        <br />
                         <br />
                         <div>
                             <span>Background Music</span>
                             <input type="file" fileread="bgm" />
                             <audio src="{{bgm}}"  controls="controls">
                                <source src="{{bgm}}" type="audio/mp3" />
-                            </audio>
-                            <br />
-                            <p>
-                                Sound dataURI:
-                                <pre>{{bgm}}</pre>
-                            </p>
-                            <br />
+                            </audio>                                                 
+                            
                             <button ng-click="uploadbgm()">upload background music</button>
                         </div>
                     </div>
