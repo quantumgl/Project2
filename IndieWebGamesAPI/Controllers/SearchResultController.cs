@@ -16,7 +16,7 @@ namespace IndieWebGamesAPI.Controllers
         {
             // var searchResult = new SearchResult();
             
-            return new SearchResult { indiePlayerProfile = db.IndiePlayerProfiles.Where(r => r.Username.StartsWith(search) || r.Bio.Contains("#" + search)) };
+            return new SearchResult { indiePlayerProfile = db.IndiePlayerProfiles.Where(r => r.Username.StartsWith(search) || r.Bio.Contains("#" + search)).ToList(),level = db.Levels.Where(lvl => lvl.LevelName.Contains(search) || lvl.Creator.Username.StartsWith(search)).ToList() };
 
         }
     }
