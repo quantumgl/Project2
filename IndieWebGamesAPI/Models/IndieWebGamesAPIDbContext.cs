@@ -26,6 +26,9 @@ namespace IndieWebGamesAPI.Models
         
 
         public System.Data.Entity.DbSet<IndieWebGamesAPI.Models.IndiePlayerProfile> IndiePlayerProfiles { get; set; }
+
+        //public DbSet<IndiePlayerProfile> IndiePlayerProfile { get; set; }
+        public DbSet<Levels> Levels { get; set; }
     }
 
     //public class MyEntity
