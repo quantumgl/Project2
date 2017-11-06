@@ -751,19 +751,13 @@ a.article, a.article:hover {
 
 .message-list {
     flex: 1;
-    overflow: auto;
-    margin-top: 0;
-    margin-bottom: 0;
+    margin:0;
     height: 400px;
+    overflow-y: scroll;
+    padding: 0;
+    text-indent: 10px;
 }
 
-    .message-list > ul {
-        max-height: 400px;
-        margin: 0;
-        overflow-y: scroll;
-        padding: 0;
-        text-indent: 10px;
-    }
 
 .message-form .input-field input {
     border-color: #FFFFFF;
