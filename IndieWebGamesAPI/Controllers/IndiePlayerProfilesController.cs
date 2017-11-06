@@ -71,7 +71,7 @@ namespace IndieWebGamesAPI.Controllers
 
         // POST: api/IndiePlayerProfiles
         [ResponseType(typeof(IndiePlayerProfile))]
-        public async Task<IHttpActionResult> PostIndiePlayerProfile(AuthIndiePlayerProfile authIndiePlayerProfile)
+        public IHttpActionResult PostIndiePlayerProfile(AuthIndiePlayerProfile authIndiePlayerProfile)
         {
             if (!ModelState.IsValid)
             {
@@ -81,10 +81,15 @@ namespace IndieWebGamesAPI.Controllers
             {
                 var profile = authIndiePlayerProfile.indiePlayerProfile;
                 db.IndiePlayerProfiles.Add(profile);
-                await db.SaveChangesAsync();
+                db.SaveChanges();
+                return Ok(authIndiePlayerProfile.indiePlayerProfile);
+            }
+            else
+            {
+                return NotFound();
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = authIndiePlayerProfile.indiePlayerProfile.Id }, authIndiePlayerProfile.indiePlayerProfile);
+            
         }
 
         // DELETE: api/IndiePlayerProfiles/5

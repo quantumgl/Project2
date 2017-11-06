@@ -53,13 +53,14 @@
                     <div class="custom-form" ng-controller="profileController" ng-init="loadprofile()">
                         <div class="text-center bg-form">
                             <div class="img-section">
-                                <img src="http://robohash.org/users?size=200x200&set=set2" class="imgCircle" alt="Profile picture">
+                                <img src="{{indieProfile.iconurl}}" width="200" height="200" class="imgCircle" alt="Profile picture">
                                 <div class="col-lg-12">
                                     <br />
                                     <h5>{{name}}</h5>
                                 </div>
                             </div>
-                            <input type="file" id="image-input" onchange="readURL(this);" accept="image/*" class="form-control form-input Profile-input-file">
+                            <!--<input type="file" id="image-input" onchange="readURL(this);" accept="image/*" class="form-control form-input Profile-input-file">-->
+                            <input type="file" id="image-input" fileread="iconDataUri" accept="image/*" class="form-control form-input Profile-input-file">
                         </div>
                         <br />
 
@@ -69,6 +70,7 @@
 
                         <div class="col-lg-12 col-md-12 text-center">
                             <button class="btn btn-info btn-lg custom-btn" id="submit"><span class="glyphicon glyphicon-floppy-disk"></span> Save</button>
+                            <button ng-click="uploadIcon()" class="btn btn-info btn-lg custom-btn" id="submit"><span class="glyphicon glyphicon-floppy-disk"></span> Upload Image</button>
                         </div>
                     </div>
                 </div>
