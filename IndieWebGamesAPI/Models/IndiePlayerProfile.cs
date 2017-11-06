@@ -10,6 +10,6 @@ namespace IndieWebGamesAPI.Models
         public int Id { get; set; }
         public string Username { get; set; }
         public string Bio { get; set; }
-        public virtual UserIcon userIcon { get; set; }
+        public string IconUrl { get; set; }
     }
 }

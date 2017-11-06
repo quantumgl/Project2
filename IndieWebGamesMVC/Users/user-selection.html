@@ -100,12 +100,44 @@
                 </div>
 
                 <div class="jumbotron" styel="width:auto; height:600px;" ng-show="panel.isSelected(5)">
-                    <div ng-controller="userIconController">
-                        <img id="userIconShow" src="" />
-                        <button ng-click="getUserIcon()">Fetch the user image</button>
-                        <input id="userIconLoad" type="file" />
-                        <button ng-click="postUserIcon()">Submit the user image to the API</button>
+                    
+                    <div ng-controller="creatorController">
+                        <div>
+                            <input type="text" textread="levelname" placeholder="Level name" />
+                            <p>{{levelname}}</p>
+                            <br />
+                        </div>
+                        <br />
+                        <div>
+                            <span>Background Image</span>
+                            <input type="file" fileread="bgimg" />
+                            <img src="{{bgimg}}" width="100" height="50" alt="Image preview...">
+                            <br />
+                            <p>
+                                Image dataURI:
+                                <pre>{{bgimg}}</pre>
+                            </p>
+                            <br />
+                            <button ng-click="uploadbgimg()">upload background image</button>
+                         </div>
+                        <br />
+                        <div>
+                            <span>Background Music</span>
+                            <input type="file" fileread="bgm" />
+                            <audio src="{{bgm}}"  controls="controls">
+                               <source src="{{bgm}}" type="audio/mp3" />
+                            </audio>
+                            <br />
+                            <p>
+                                Sound dataURI:
+                                <pre>{{bgm}}</pre>
+                            </p>
+                            <br />
+                            <button ng-click="uploadbgm()">upload background music</button>
+                        </div>
                     </div>
+                                        
+                    
                 </div>
 
             </div>
