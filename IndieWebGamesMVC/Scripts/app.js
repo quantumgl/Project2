@@ -167,7 +167,7 @@ app.controller("chatCtrl", function ($scope, $http, $rootScope) {
       ***/
     $scope.chatChannel = "angular_chat";
     $scope.messageLimit = 25;
-    $scope.defaultUsername = $rootScope.name;
+    $scope.defaultUsername = $rootScope.username;
 
     /***
      * Static global variables

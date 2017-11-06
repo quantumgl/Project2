@@ -55,7 +55,7 @@
                                 <img src="http://robohash.org/users?size=200x200&set=set2" class="imgCircle" alt="Profile picture">
                                 <div class="col-lg-12">
                                     <br />
-                                    <h5>{{name}}</h5>
+                                    <h5>{{username}}</h5>
                                 </div>
                             </div>
                             <input type="file" id="image-input" onchange="readURL(this);" accept="image/*" class="form-control form-input Profile-input-file">
@@ -73,12 +73,12 @@
                 </div>
 
                 <!--SEARCH PANEL-->
-                <div class="jumbotron" styel="width:auto; height:600px;" ng-show="panel.isSelected(2)">
+                <div class="jumbotron" ng-show="panel.isSelected(2)">
                     <h1>THIS IS PANEL 2</h1>
                 </div>
 
                 <!--CHAT PANEL-->
-                <div class="jumbotron" styel="width:auto; height:600px;" ng-show="panel.isSelected(3)">
+                <div class="jumbotron" ng-show="panel.isSelected(3)">
                     <div class="custom-form"  ng-controller="chatCtrl">
                         <div class="message-container">
                             <div class="message-list">
@@ -94,18 +94,16 @@
                                         <p>{{chat.date | date:"MM/dd/yyyy 'at' h:mma"}}<br /> {{chat.text}}</p>
                                     </li>
                                 </ul>
-                                <!--<message-list></message-list>-->
                             </div>
 
                             <div class="message-form">
                                 <form class="container">
                                     <div class="row">
                                         <div class="input-field col s10">
-                                            <i class="prefix mdi-communication-chat"></i>
-                                            <input ng-model="message.text" type="text" placeholder="Type your message">
+                                            <i class="fa fa-comments fa-2x"></i>
+                                            <input class="form-control-form" ng-model="message.text" type="text" placeholder="Type your message">
                                             <span class="chip left">
-                                                <user-avatar uuid="{{uuid}}"></user-avatar>
-                                                Anonymous robot #{{uuid}}
+                                                {{username}}
                                             </span>
                                         </div>
                                         <div class="input-field col s2">
@@ -121,14 +119,13 @@
                    </div>
                 </div>
 
-                <div class="jumbotron" styel="width:auto; height:600px;" ng-show="panel.isSelected(4)">
+                <div class="jumbotron" ng-show="panel.isSelected(4)">
                     <canvas id="gamePlayer" width="200" height="100"></canvas>
                     hello?
 
                 </div>
 
-                <div class="jumbotron" styel="width:auto; height:600px;" ng-show="panel.isSelected(5)">
-                    
+                <div class="jumbotron" ng-show="panel.isSelected(5)">
                     <div ng-controller="creatorController">
                         <div>
                             <input type="text" textread="levelname" placeholder="Level name" />
@@ -153,13 +150,8 @@
                             
                             <button ng-click="uploadbgm()">upload background music</button>
                         </div>
-                    </div>
-                                        
-                    
+                    </div>                
                 </div>
-
             </div>
         </div>
     </div>
-
-</div>
