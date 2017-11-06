@@ -26,14 +26,12 @@ namespace IndieWebGamesAPI.Controllers
         [ResponseType(typeof(IndiePlayerProfile))]
         public IHttpActionResult GetIndiePlayerProfile(string Username)
         {
-            var indiePlayerProfiles =  db.IndiePlayerProfiles.Where(profile => profile.Username == Username).ToList();
-            
-            if (indiePlayerProfiles.Count == 0)
-            {
+            var list = db.IndiePlayerProfiles.Where(p => p.Username == Username).ToList();
+            //IndiePlayerProfile indiePlayerProfile = await db.IndiePlayerProfiles.FindAsync(Username);
+            if (list.Count == 0)
                 return NotFound();
-            }
-
-            return Ok(indiePlayerProfiles[0]);
+            
+            return Ok(list[0]);
         }
 
         // PUT: api/IndiePlayerProfiles/5
