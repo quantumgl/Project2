@@ -5,7 +5,7 @@ using System.Web;
 
 namespace IndieWebGamesAPI.Models
 {
-    public class Levels
+    public class Level
     {
         public int Id { get; set; }
         public IndiePlayerProfile Creator { get; set; }
