@@ -34,6 +34,26 @@ var userIconPost = function (scope, http, log) {
 };
 
 
+var refresh_status = function (scope, http, log) {
+
+    authobj = new AuthenticateUserStatus(scope.name, 0, scope.userid);
+    //console.log("Problematic object: " + JSON.stringify(authobj));
+    http.post("https://indiewebgamesapi.azurewebsites.net/api/Users", authobj)
+        //$http.post("http://localhost:59596/api/AuthViewModelTest", authobj)
+        .then(function (response) {
+            scope.user_details = response.data;
+        });
+}
+
+var refresh_users = function (scope, http, log) {
+    //console.log("Refresh status being called");
+    http.get("https://indiewebgamesapi.azurewebsites.net/api/Users")
+        .then(function (response) {
+            //console.log("Response list from API: " + JSON.stringify(response));
+            scope.users = response.data;
+        });
+}
+
 //small library
 function dataURItoBlob(dataURI) {
     var binary = atob(dataURI.split(',')[1]);
