@@ -190,7 +190,7 @@ app.controller("chatCtrl", function ($scope, $http, $rootScope) {
     /***
       * Configurable global variables
       ***/
-    $scope.chatChannel = "angular_chat";
+    $scope.chatChannel = "indiewebgames";
     $scope.messageLimit = 25;
     $scope.defaultUsername = $rootScope.username;
 
