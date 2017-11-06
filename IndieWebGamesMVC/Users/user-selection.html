@@ -37,7 +37,7 @@
 
             <li ng-class="{active:panel.isSelected(5)}">
                 <a ng-click="panel.selectTab(5)">
-                    <i class="fa fa-gamepad fa-2x"></i>
+                    <i class="fa fa-wrench fa-2x"></i>
                     Creator Portal
                 </a>
             </li>
@@ -56,7 +56,7 @@
                                 <img src="{{indieProfile.iconurl}}" width="200" height="200" class="imgCircle" alt="Profile picture">
                                 <div class="col-lg-12">
                                     <br />
-                                    <h5>{{name}}</h5>
+                                    <h5>{{username}}</h5>
                                 </div>
                             </div>
                             <!--<input type="file" id="image-input" onchange="readURL(this);" accept="image/*" class="form-control form-input Profile-input-file">-->
@@ -76,10 +76,11 @@
                 </div>
 
                 <!--SEARCH PANEL-->
-                <div ng-app="myModule" ng-controller="SearchController">
+
                 <div class="jumbotron" styel="width:auto; height:600px;" ng-show="panel.isSelected(2)">
+
                     <h1>THIS IS PANEL 2</h1>
-                    <div class="bar">
+                    <div ng-controller="SearchController" class="bar">
                         <!-- Create a binding between the searchString model and the text field -->
                         <input type="text" ng-model="searchString" placeholder="Enter your search terms" />
                     </div>
@@ -99,57 +100,62 @@
                 </div>
 
                 <!--CHAT PANEL-->
-                <div class="jumbotron" styel="width:auto; height:600px;" ng-show="panel.isSelected(3)">
-                    <div class="custom-form"  ng-controller="chatCtrl">
+                <div class="jumbotron" ng-show="panel.isSelected(3)">
+                    <div class="custom-form" ng-controller="chatCtrl">
                         <div class="message-container">
-                            <div class="message-list">
-                                <div class="online-user-list">
-                                    <div class="online-users-number valign-wrapper">
-                                        <i class="fa fa-users"></i><span class="valign">{{users.length}} online </span>
-                                    </div>
+                            <div class="online-user-list">
+                                <div class="online-users-number valign-wrapper">
+                                    <i class="fa fa-comments"></i>
+                                        <span style="padding-left:50px">
+                                            <h5> Chat with the IWG Community!</h5>
+                                        </span>
                                 </div>
-
+                            </div>
+                            <div class="message-list">
                                 <ul class="message-list collection">
                                     <li class="collection-item message-item" ng-repeat="chat in chatMessages">
-                                        <strong>{{chat.username}}</strong>
-                                        <p>{{chat.date | date:"MM/dd/yyyy 'at' h:mma"}}<br /> {{chat.text}}</p>
+                                        <strong>#{{chat.username}}</strong>
+                                        <em style="float:right; padding-right:15px;">{{chat.date | date:"MM/dd/yyyy 'at' h:mma"}}</em>
+                                        <br /><br /> <p>{{chat.text}}</p>
                                     </li>
                                 </ul>
-                                <!--<message-list></message-list>-->
                             </div>
 
                             <div class="message-form">
                                 <form class="container">
-                                    <div class="row">
-                                        <div class="input-field col s10">
-                                            <i class="prefix mdi-communication-chat"></i>
-                                            <input ng-model="message.text" type="text" placeholder="Type your message">
-                                            <span class="chip left">
-                                                <user-avatar uuid="{{uuid}}"></user-avatar>
-                                                Anonymous robot #{{uuid}}
+                                    <div class="col-lg-12">
+                                        <div class="row" style="padding-bottom:10px">
+                                            <span class="chip" style="float:left">
+                                                #{{username}}
                                             </span>
-                                        </div>
-                                        <div class="input-field col s2">
-                                            <button type="submit" ng-click="postMessage()" class="waves-effect waves-light btn-floating btn-large">
-                                                <i class="material-icons send"></i>
-                                            </button>
+                                            <div class="col-sm-8" style="padding-top:10px;">
+                                                <input class="form-control" ng-model="message.text" type="text" placeholder="Type your message">
+                                            </div>
+
+                                            <div class="col-sm-2" style="padding-top:10px;">
+                                                <button type="submit" ng-click="postMessage()" class="btn btn-default">
+                                                    <i class="fa fa-send"></i>
+                                                </button>
+                                            </div>
+                                            <!--<div class="col-sm-2" style="padding-top:10px;">
+                                                
+                                            </div>-->
                                         </div>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
-                   </div>
-                
+                </div>
 
-                <div class="jumbotron" styel="width:auto; height:600px;" ng-show="panel.isSelected(4)">
+
+                <div class="jumbotron" ng-show="panel.isSelected(4)">
                     <canvas id="gamePlayer" width="200" height="100"></canvas>
                     hello?
 
                 </div>
 
-                <div class="jumbotron" styel="width:auto; height:600px;" ng-show="panel.isSelected(5)">
-                    
+                <div class="jumbotron" ng-show="panel.isSelected(5)">
                     <div ng-controller="creatorController">
                         <div>
                             <input type="text" textread="levelname" placeholder="Level name" />
@@ -160,27 +166,22 @@
                         <div>
                             <span>Background Image</span>
                             <input type="file" fileread="bgimg" />
-                            <img src="{{bgimg}}" width="100" height="50" alt="Image preview...">                           
+                            <img src="{{bgimg}}" width="100" height="50" alt="Image preview...">
                             <button ng-click="uploadbgimg()">upload background image</button>
-                         </div>
+                        </div>
                         <br />
                         <br />
                         <div>
                             <span>Background Music</span>
                             <input type="file" fileread="bgm" />
-                            <audio src="{{bgm}}"  controls="controls">
-                               <source src="{{bgm}}" type="audio/mp3" />
-                            </audio>                                                 
-                            
+                            <audio src="{{bgm}}" controls="controls">
+                                <source src="{{bgm}}" type="audio/mp3" />
+                            </audio>
+
                             <button ng-click="uploadbgm()">upload background music</button>
                         </div>
                     </div>
-                                        
-                    
                 </div>
-
             </div>
         </div>
     </div>
-
-</div>
