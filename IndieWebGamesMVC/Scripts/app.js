@@ -69,7 +69,7 @@ app.controller('addUser', function ($scope, $http, $rootScope) {
 app.controller('callUsers', function ($scope, $http, $log, $rootScope) {
 
     function myCallback() {
-        if (debug == 1) {
+        if (debug === 1) {
             //refresh_status($scope, $http);
             //refresh_users($scope, $http);
         }
@@ -97,24 +97,75 @@ app.controller("profileController",
 
     function profileController($scope, $http, $rootScope) {
 
-
+        $scope.iconurl;
+        $scope.iconDataUri;
 
         $scope.loadprofile = function () {
+            $scope.username = document.getElementById("name").innerHTML;
             $rootScope.username = document.getElementById("name").innerHTML;
+            $scope.userid = document.getElementById("userid").innerHTML;
             console.log("Hello nurse");
 
-            $http.get("http://localhost/api/IndiePlayerProfiles?Username=" + $rootScope.username)
+            $rootScope.indieProfile;
+            $rootScope.authIndieProfile;
+
+            $http.get("http://localhost:59596/api/IndiePlayerProfiles?Username=" + $scope.username)
                 .then(function (response) {
                     console.log("success", response);
                     $rootScope.indieProfile = response.data;
                 },
                 function (error) {
                     console.log("error", error);
-                    //$rootScope.indieProfile = IndieProfile($rootScope.username);
+                    console.log($scope.username);
+                    $rootScope.authIndieProfile = new AuthIndiePlayerProfile($scope.username, $scope.userid);
+                    console.log($rootScope.authIndieProfile);
+                    $http.post("http://localhost:59596/api/IndiePlayerProfiles", $rootScope.authIndieProfile)
+                        .then(function (response) {
+                            $rootScope.indieProfile = response.data;
+                            $rootScope.iconurl = $rootScope.indieProfile.Iconurl;
+                        },
+                        function (error) {
+                            console.log(error);
+                        });
 
                 }
             )
         };
+
+        $scope.uploadIcon = function () {
+            var fd = new FormData();
+            var imgBlob = dataURItoBlob($scope.iconDataUri);
+            fd.append($scope.username, imgBlob);
+            $http.post(
+                'http://localhost:59596/api/upload?Username=' + $rootScope.username,
+                fd, {
+                    transformRequest: angular.identity,
+                    headers: {
+                        'Content-Type': undefined
+                    }
+                }
+            )
+                .then(function (response) {
+                    console.log('success', response);
+                    $rootScope.indieProfile.iconurl = "https://indiewebgames.blob.core.windows.net/icons/" + $rootScope.username;
+                    authViewModel = new AuthViewModel($scope.username, $scope.userid);
+                    indiePlayerProfile = $rootScope.indieProfile;
+                    authIndieProfile = { indiePlayerProfile, authViewModel };
+                    $http.put('http://localhost:59596/api/IndiePlayerProfiles/' + $rootScope.indieProfile.id, indiePlayerProfile).then(
+                        function (response) {
+                            $http.get('http://localhost:59596/api/IndiePlayerProfiles?Username=' + $rootScope.username)
+                                .then(function (response) {
+                                    $rootScope.indieProfile = response.data;
+                                    console.log("refreshed profile from server");
+                                },
+                                function (error) { })
+                        }, function (error) { }
+                    );
+                },
+                function (response) {
+                    console.log('error', response);
+                });
+        }
 
 });
 
@@ -186,7 +237,8 @@ app.directive("textread", [
 
 ]);
 
-app.controller("chatCtrl", function ($scope, $http, $rootScope) {
+app.controller("chatCtrl", function ($scope, $http, $rootScope)
+{
     /***
       * Configurable global variables
       ***/
@@ -229,7 +281,7 @@ app.controller("chatCtrl", function ($scope, $http, $rootScope) {
                 $scope.chatMessages = messages;
             });
         });
-    }
+    };
 
 
     /***
@@ -319,4 +371,83 @@ app.controller("chatCtrl", function ($scope, $http, $rootScope) {
         $scope.clearMsg();
         $scope.loggedIn = false;
     }
+
 });
+    app.filter('searchFor', function () {
+
+        // All filters must return a function. The first parameter
+        // is the data that is to be filtered, and the second is an
+        // argument that may be passed with a colon (searchFor:searchString)
+
+        return function (arr, searchString) {
+
+            if (!searchString) {
+                return arr;
+            }
+
+            var result = [];
+
+            searchString = searchString.toLowerCase();
+
+            // Using the forEach helper method to loop through the array
+            angular.forEach(arr, function (item) {
+
+                if (item.title.toLowerCase().indexOf(searchString) !== -1) {
+                    result.push(item);
+                }
+
+            });
+
+            return result;
+        };
+
+    });
+
+    // The controller
+
+    app.controller('SearchController', function ($scope)
+    {
+
+        // The data model. These items would normally be requested via AJAX,
+        // but are hardcoded here for simplicity. See the next example for
+        // tips on using AJAX.
+
+        $scope.items = [
+            {
+                url: 'http://www.tutorialspoint.com/android/',
+                title: 'Android tutorials',
+                image: 'http://www.tutorialspoint.com/android/images/android-mini-logo.jpg'
+            },
+            {
+                url: 'http://www.tutorialspoint.com/angularjs/',
+                title: 'AngularJs Tutorials ',
+                image: 'http://www.tutorialspoint.com/angularjs/images/angularjs-mini-logo.jpg'
+            },
+            {
+                url: 'http://www.tutorialspoint.com/html5/',
+                title: 'HTML5 Tutorials',
+                image: 'http://www.tutorialspoint.com/html5/images/html5-mini-logo.jpg'
+            },
+            {
+                url: 'http://www.tutorialspoint.com/css/',
+                title: 'CSS Tutorials',
+                image: 'http://www.tutorialspoint.com/css/images/css-mini-logo.jpg'
+            },
+            {
+                url: 'http://www.tutorialspoint.com/java/',
+                title: 'Java Tutorials',
+                image: 'http://www.tutorialspoint.com/java/images/java-mini-logo.jpg'
+            },
+            {
+                url: 'http://www.tutorialspoint.com/joomla/',
+                title: 'Joomla Tutorials',
+                image: 'http://www.tutorialspoint.com/joomla/images/joomla-mini-logo.jpg'
+            },
+            {
+                url: 'http://www.tutorialspoint.com/html/',
+                title: 'HTML Tutorials ',
+                image: 'http://www.tutorialspoint.com/html/images/html-mini-logo.jpg'
+            }
+        ];
+    });
+
