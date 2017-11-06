@@ -110,7 +110,8 @@ app.controller("profileController",
                 },
                 function (error) {
                     console.log("error", error);
-                    //$rootScope.indieProfile = IndieProfile($rootScope.username);
+                    $rootScope.indieProfile = AuthIndiePlayerProfile($rootScope.username);
+                    //$http.post("http://localhost/api/IndiePlayerProfiles", 
 
                 }
             )
