@@ -216,6 +216,7 @@
     <Compile Include="Controllers\IndiePlayerProfilesController.cs" />
     <Compile Include="Controllers\UploadbgmController.cs" />
     <Compile Include="Controllers\UploadbgimgController.cs" />
+    <Compile Include="Models\Levels.cs" />
     <Compile Include="Models\SearchResult.cs" />
     <Compile Include="Controllers\SearchResultController.cs" />
     <Compile Include="Controllers\UploadIconController.cs" />
