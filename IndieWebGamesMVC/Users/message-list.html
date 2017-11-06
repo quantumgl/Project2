@@ -1,0 +1,6 @@
+﻿<ul class="message-list collection">
+    <li class="collection-item message-item" ng-repeat="chat in chatMessages">
+        <strong>{{chat.username}}</strong>
+        <p>{{chat.date | date:"MM/dd/yyyy 'at' h:mma"}}<br /> {{chat.text}}</p>
+    </li>
+</ul>

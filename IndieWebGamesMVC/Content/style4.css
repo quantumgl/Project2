@@ -730,3 +730,135 @@ a.article, a.article:hover {
 .form-group{
     padding-top:20px;
 }
+
+
+/*CHAT CSS*/
+.message-container, .message-form {
+    display: flex;
+    border-radius: 2px 2px;
+    flex-direction: column;
+}
+
+.jumbotron p {
+    margin-bottom: 15px;
+    font-weight: 200;
+}
+.message-form {
+    flex: 1;
+    max-height: 136px;
+    background-color: #009688 !important;
+    color: white;
+}
+
+.message-list {
+    flex: 1;
+    overflow: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+    height: 400px;
+}
+
+    .message-list > ul {
+        max-height: 400px;
+        margin: 0;
+        overflow-y: scroll;
+        padding: 0;
+        text-indent: 10px;
+    }
+
+.message-form .input-field input {
+    border-color: #FFFFFF;
+}
+
+.chip {
+    font-style: italic;
+}
+
+.mdi-communication-chat {
+    color: white;
+}
+
+.collection .collection-item:last-child {
+    border-bottom: 0.1em solid #DCDCDC;
+}
+/* -------- Online user list ---------- */
+
+.online-user-list, .online-user-list ul {
+    display: flex;
+}
+
+.online-user-list {
+    flex: 1;
+    margin: 0;
+    max-height: 65px;
+    background-color: #009688 !important;
+}
+
+    .online-user-list ul {
+        flex: 1;
+        flex-direction: row;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        margin: 0;
+    }
+
+    .online-user-list li {
+        display: inline-block;
+    }
+
+    .online-user-list img {
+        margin: 4px;
+        width: 50px;
+    }
+
+.online-users-number {
+    color: white;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+    .online-users-number i {
+        font-size: 50px;
+    }
+
+.icon-bar {
+    width: 90px; /* Set a specific width */
+    background-color: #555; /* Dark-grey background */
+}
+
+    .icon-bar a {
+        display: block; /* Make the links appear below each other instead of side-by-side */
+        text-align: center; /* Center-align text */
+        padding: 16px; /* Add some padding */
+        transition: all 0.3s ease; /* Add transition for hover effects */
+        color: white; /* White text color */
+        font-size: 36px; /* Increased font-size */
+    }
+
+        .icon-bar a:hover {
+            background-color: #000; /* Add a hover color */
+        }
+
+
+.chip {
+    display: inline-block;
+    height: 32px;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(0,0,0,0.6);
+    line-height: 32px;
+    padding: 0 12px;
+    border-radius: 16px;
+    background-color: #e4e4e4;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    font-style: italic;
+}
+
+.collection .collection-item {
+    background-color: #fff;
+    line-height: 1.5rem;
+    padding: 10px 20px;
+    margin: 0;
+    border-bottom: 1px solid #e0e0e0;
+}

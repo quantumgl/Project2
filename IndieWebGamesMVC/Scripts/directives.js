@@ -10,7 +10,7 @@ app.directive('userSelection', function () {
                 this.tab = setTab;
             };
             this.isSelected = function (checkTab) {
-                return this.tab == checkTab;
+                return this.tab === checkTab;
             };
         },
         controllerAs: 'panel' //Alias
