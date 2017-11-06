@@ -9,8 +9,11 @@ namespace IndieWebGamesAPI.Models
     public class Level
     {
         public int Id { get; set; }
-        [ForeignKey("IndiePlayerProfile")]
-        public int CreatorId { get; set; }
+        
+        public int IndiePlayerProfileId { get; set; }
+
+        [ForeignKey("IndiePlayerProfileId")]
+        public IndiePlayerProfile Creator { get; set; }
         public string Bgmurl { get; set; }
         public string Bgimgurl { get; set; }
         public string LevelName { get; set; }

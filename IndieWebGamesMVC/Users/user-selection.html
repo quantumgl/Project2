@@ -47,9 +47,10 @@
     <div class="container body-content" style="padding:20px;">
         <div class="row">
             <div class="col-lg-12">
+
                 <!--PROFILE PANEL-->
                 <div class="jumbotron" ng-show="panel.isSelected(1)">
-                    <div class="custom-form">
+                    <div class="custom-form" ng-controller="profileController" ng-init="loadprofile()">
                         <div class="text-center bg-form">
                             <div class="img-section">
                                 <img src="http://robohash.org/users?size=200x200&set=set2" class="imgCircle" alt="Profile picture">
@@ -119,7 +120,7 @@
                         </div>
                     </div>
                    </div>
-                </div>
+                
 
                 <div class="jumbotron" styel="width:auto; height:600px;" ng-show="panel.isSelected(4)">
                     <canvas id="gamePlayer" width="200" height="100"></canvas>
