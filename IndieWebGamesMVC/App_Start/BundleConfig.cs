@@ -8,6 +8,8 @@ namespace IndieWebGamesMVC
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            bundles.UseCdn = true;
+
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
@@ -27,7 +29,8 @@ namespace IndieWebGamesMVC
                 "~/Scripts/angular.js",
                 "~/Scripts/app.js",
                 "~/Scripts/angular-route.js",
-                "~/Scripts/directives.js"));
+                "~/Scripts/directives.js"
+                ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
@@ -38,6 +41,9 @@ namespace IndieWebGamesMVC
                 "~/Scripts/API/controllers.js",
                 "~/Scripts/API/models.js"
                 ));
+
+            //bundles.Add(new ScriptBundle("~/bundles/Pubnub", "http://cdn.pubnub.com/pubnub-3.1.min.js"));
+            //bundles.Add(new ScriptBundle("~/bundles/Pubnub-angular", "http://pubnub.github.io/angular-js/scripts/pubnub-angular.js"));
         }
     }
 }
