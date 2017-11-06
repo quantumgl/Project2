@@ -34,6 +34,13 @@
                     Games
                 </a>
             </li>
+
+            <li ng-class="{active:panel.isSelected(5)}">
+                <a ng-click="panel.selectTab(5)">
+                    <i class="fa fa-gamepad fa-2x"></i>
+                    Creator Portal
+                </a>
+            </li>
         </ul>
     </nav>
     <!-- Page Content Holder -->
@@ -115,7 +122,40 @@
                 </div>
 
                 <div class="jumbotron" styel="width:auto; height:600px;" ng-show="panel.isSelected(4)">
-                    <h1>THIS IS PANEL 4</h1>
+                    <canvas id="gamePlayer" width="200" height="100"></canvas>
+                    hello?
+
+                </div>
+
+                <div class="jumbotron" styel="width:auto; height:600px;" ng-show="panel.isSelected(5)">
+                    
+                    <div ng-controller="creatorController">
+                        <div>
+                            <input type="text" textread="levelname" placeholder="Level name" />
+                            <p>{{levelname}}</p>
+                            <br />
+                        </div>
+                        <br />
+                        <div>
+                            <span>Background Image</span>
+                            <input type="file" fileread="bgimg" />
+                            <img src="{{bgimg}}" width="100" height="50" alt="Image preview...">                           
+                            <button ng-click="uploadbgimg()">upload background image</button>
+                         </div>
+                        <br />
+                        <br />
+                        <div>
+                            <span>Background Music</span>
+                            <input type="file" fileread="bgm" />
+                            <audio src="{{bgm}}"  controls="controls">
+                               <source src="{{bgm}}" type="audio/mp3" />
+                            </audio>                                                 
+                            
+                            <button ng-click="uploadbgm()">upload background music</button>
+                        </div>
+                    </div>
+                                        
+                    
                 </div>
 
             </div>

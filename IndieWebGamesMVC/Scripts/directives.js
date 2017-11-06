@@ -16,3 +16,13 @@ app.directive('userSelection', function () {
         controllerAs: 'panel' //Alias
     };
 });
+
+app.directive('accounts', function () {
+    return {
+        restrict: 'E',
+        templateUrl: '/Users/accounts.html',
+        controller: function () {
+        },
+        controllerAs: 'accountsController' //Alias
+    };
+});

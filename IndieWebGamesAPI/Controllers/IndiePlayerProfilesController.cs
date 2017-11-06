@@ -18,22 +18,20 @@ namespace IndieWebGamesAPI.Controllers
         private IndieWebGamesAPIDbContext db = new IndieWebGamesAPIDbContext();
 
         // GET: api/IndiePlayerProfiles
-        public IQueryable<IndiePlayerProfile> GetIndiePlayerProfiles()
-        {
-            return db.IndiePlayerProfiles;
+        public IEnumerable<IndiePlayerProfile> GetIndiePlayerProfiles()        {
+            return db.IndiePlayerProfiles.ToList();
         }
 
         // GET: api/IndiePlayerProfiles/5
         [ResponseType(typeof(IndiePlayerProfile))]
-        public async Task<IHttpActionResult> GetIndiePlayerProfile(string Username)
+        public IHttpActionResult GetIndiePlayerProfile(string Username)
         {
-            IndiePlayerProfile indiePlayerProfile = await db.IndiePlayerProfiles.FindAsync(Username);
-            if (indiePlayerProfile == null)
-            {
+            var list = db.IndiePlayerProfiles.Where(p => p.Username == Username).ToList();
+            //IndiePlayerProfile indiePlayerProfile = await db.IndiePlayerProfiles.FindAsync(Username);
+            if (list.Count == 0)
                 return NotFound();
-            }
-
-            return Ok(indiePlayerProfile);
+            
+            return Ok(list[0]);
         }
 
         // PUT: api/IndiePlayerProfiles/5
@@ -81,7 +79,8 @@ namespace IndieWebGamesAPI.Controllers
             }
             if (authIndiePlayerProfile.authViewModel.isAuthentic)
             {
-                db.IndiePlayerProfiles.Add(authIndiePlayerProfile.indiePlayerProfile);
+                var profile = authIndiePlayerProfile.indiePlayerProfile;
+                db.IndiePlayerProfiles.Add(profile);
                 await db.SaveChangesAsync();
             }
 
