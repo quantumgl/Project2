@@ -697,7 +697,6 @@ a.article, a.article:hover {
     border-radius: 20px;
     box-shadow: 0 0 16px #1440bf;
     overflow: hidden;
-    height: 700px;
 }
 
 .img-section {
@@ -746,7 +745,6 @@ a.article, a.article:hover {
     display: flex;
     border-radius: 2px 2px;
     flex-direction: column;
-    width:700px;
 }
 
 .jumbotron p {

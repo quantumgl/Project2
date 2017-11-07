@@ -78,22 +78,26 @@
                 <!--SEARCH PANEL-->
 
                 <div class="jumbotron"  ng-show="panel.isSelected(2)">
-
-                    <h1>SEARCH</h1>
                     <div ng-controller="SearchController" class="bar">
-                        <input type="text" textread="search"  ng-model="search" placeholder="Enter your search terms" />
-                        <button ng-click="callRestService()">help</button>
-                        <p>{{search}}</p>
-                    
-                    <ul>
+                        <div class="custom-form">
+                            <input type="text" class="form-control" textread="search" ng-model="search" placeholder="Enter your search terms" />
+                            <button ng-click="callRestService()">help</button>
 
-                        <li ng-repeat="indieprofile in searchresults.indiePlayerProfile">
-                            <!--<a href="{{indiePlayerProfile.username}}"><img ng-src="{{i.iconurl}}"/></a>-->
-                            <p>{{indieprofile.username}}</p>
-                        </li>
-                    </ul>
+
+
+                            <ul class="list-group" id="contact-list">
+                                <li class="list-group-item" ng-repeat="indieprofile in searchresults.indiePlayerProfile">
+                                    <div class="col-xs-12 col-sm-3">
+                                        <img src="{{indieprofile.iconurl}}" width="60" height="60" alt="{{indieprofile.username}}" class="img-responsive img-circle" />
+                                    </div>
+                                    <div class="col-xs-12 col-sm-9">
+                                        <span class="name">{{indieprofile.username}}</span><br />
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
                 </div>
 
                 <!--CHAT PANEL-->
