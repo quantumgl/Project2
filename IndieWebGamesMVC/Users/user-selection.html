@@ -53,7 +53,7 @@
                     <div class="custom-form" ng-controller="profileController" ng-init="loadprofile()">
                         <div class="text-center bg-form">
                             <div class="img-section">
-                                <img id="profilepic" src="{{iconurl}}" width="200" height="200" class="imgCircle" alt="Profile picture">
+                                <img id="profilepic" src="{{indieProfile.iconurl}}" width="200" height="200" class="imgCircle" alt="Profile picture">
                                 <div class="col-lg-12">
                                     <br />
                                     <h5>{{username}}</h5>
@@ -81,15 +81,18 @@
 
                     <h1>SEARCH</h1>
                     <div ng-controller="SearchController" class="bar">
-                        <input type="text" ng-model="search" placeholder="Enter your search terms" />
-                    </div>
+                        <input type="text" textread="search"  ng-model="search" placeholder="Enter your search terms" />
+                        <button ng-click="callRestService()">help</button>
+                        <p>{{search}}</p>
+                    
                     <ul>
-                        <li ng-repeat="indiePlayerProfile in indieprofile | filter:search">
+
+                        <li ng-repeat="indieprofile in searchresults.indiePlayerProfile">
                             <!--<a href="{{indiePlayerProfile.username}}"><img ng-src="{{i.iconurl}}"/></a>-->
-                            <p>{{indiePlayerProfile.username}}</p>
+                            <p>{{indieprofile.username}}</p>
                         </li>
                     </ul>
-                    <div/>
+                    </div>
                 </div>
                 </div>
 
