@@ -426,37 +426,7 @@ app.controller("chatCtrl", function ($scope, $http, $rootScope)
                 })
         }
 
-        //$scope.online = function (name)
-        //{
-        //    $rootScope.name = name;
-        //    //$http.get("
-        //}
-
-        //$scope.items = [
-        //    {
-        //        url: 'http://indiewebgamesapi.azurewebsites.net/api/Users?UserName=" + name',
-        //        title: '$scope.name',
-        //        image: 'http://www.tutorialspoint.com/android/images/android-mini-logo.jpg'
-        //    }
-        //];
     });
-
-//app.directive("searchread", [
-//    function () {
-//        return {
-//            scope: {
-//                searchread: "="
-//            },
-//            link: function (scope, element, attributes) {
-//                element.bind("change", function (changeEvent) {
-//                    scope.searchread = changeEvent.target.value;
-//                    //scope.callRestService();
-//                });
-//            }
-//        }
-//    }
-
-//]);
 
     app.directive('myOnKeyDownCall', function ()
     {
