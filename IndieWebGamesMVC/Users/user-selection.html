@@ -76,21 +76,19 @@
                 </div>
 
                 <!--SEARCH PANEL-->
-
                 <div class="jumbotron"  ng-show="panel.isSelected(2)">
                     <div ng-controller="SearchController" class="bar">
-                        <div class="custom-form">
-                            <input type="text" class="form-control" ng-keyup="callRestService()" textread="search" ng-model="search" placeholder="Enter your search terms" />
+                        <div class="custom-form" style="height:500px;>
+                            <input type="text" class="form-control search center-block" ng-keyup="callRestService()" textread="search" ng-model="search" placeholder="Enter your search terms" />                           
 
-
-
-                            <ul class="list-group" id="contact-list">
+                            <ul class="list-group" style="margin-top:15px">
                                 <li class="list-group-item" ng-repeat="indieprofile in searchresults.indiePlayerProfile">
                                     <div class="col-xs-12 col-sm-3">
                                         <img src="{{indieprofile.iconurl}}" width="60" height="60" alt="{{indieprofile.username}}" class="img-responsive img-circle" />
                                     </div>
                                     <div class="col-xs-12 col-sm-9">
-                                        <span class="name">{{indieprofile.username}}</span><br />
+                                        <strong>{{indieprofile.username}}</strong><br />
+                                        <span>{{indieprofile.levels}}</span><br />
                                     </div>
                                     <div class="clearfix"></div>
                                 </li>
