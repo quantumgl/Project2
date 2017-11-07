@@ -29,7 +29,7 @@ app.controller('userIconController', function ($scope, $http, $log) {
             console.log(file_reader.result);
             //userIconPost($scope, $http, $log);
 
-        }
+        };
 
         var file = $scope.icon_path.files[0];
         //console.log(file);
@@ -61,7 +61,7 @@ app.controller('addUser', function ($scope, $http, $rootScope) {
 
     $scope.login = function () {
         console.log("lmao");
-    }
+    };
 
 });
 
@@ -99,6 +99,12 @@ app.controller("profileController",
 
         $scope.iconurl;
         $scope.iconDataUri;
+        $scope.bio;
+
+        $scope.saveProfile = function () {
+            $rootScope.indieProfile.bio = $scope.bio;
+            $http.put(serv + '/api/IndiePlayerProfiles/' + $rootScope.indieProfile.id, $rootScope.indieProfile).then(function (result) { console.log('success', result); }, function (error) { console.log('error', error); });
+        };
 
         $scope.loadprofile = function () {
             $scope.username = document.getElementById("name").innerHTML;
@@ -113,6 +119,7 @@ app.controller("profileController",
                 .then(function (response) {
                     console.log("success", response);
                     $rootScope.indieProfile = response.data;
+                    $scope.bio = $rootScope.indieProfile.bio;
                 },
                 function (error) {
                     console.log("error", error);
@@ -128,8 +135,7 @@ app.controller("profileController",
                             console.log(error);
                         });
 
-                }
-                )
+                });
         };
 
         $scope.uploadIcon = function () {
@@ -158,14 +164,14 @@ app.controller("profileController",
                                     $rootScope.indieProfile = response.data;
                                     console.log("refreshed profile from server");
                                 },
-                                function (error) { })
+                                function (error) { });
                         }, function (error) { }
                     );
                 },
                 function (response) {
                     console.log('error', response);
                 });
-        }
+        };
 
     });
 
@@ -177,7 +183,7 @@ app.controller("creatorController",
         $scope.bgm;
         $scope.levelname;
 
-        $scope.uploadImage = function () {
+        $scope.uploadbgimg = function () {
             var fd = new FormData();
             var imgBlob = dataURItoBlob($scope.uploadme);
             fd.append('file', imgBlob);
@@ -196,7 +202,32 @@ app.controller("creatorController",
                 .error(function (response) {
                     console.log('error', response);
                 });
-        }
+        };
+
+        $scope.uploadbgm = function () {
+            var fd = new FormData();
+            var imgBlob = dataURItoBlob($scope.uploadme);
+            fd.append('file', imgBlob);
+            $http.post(
+                'imageURL',
+                fd, {
+                    transformRequest: angular.identity,
+                    headers: {
+                        'Content-Type': undefined
+                    }
+                }
+            )
+                .success(function (response) {
+                    console.log('success', response);
+                })
+                .error(function (response) {
+                    console.log('error', response);
+                });
+        };
+
+        $scope.postLevel = function () {
+            alert("Level posted");
+        };
 });
 
 
@@ -213,11 +244,11 @@ app.directive("fileread", [
                         scope.$apply(function () {
                             scope.fileread = loadEvent.target.result;
                         });
-                    }
+                    };
                     reader.readAsDataURL(changeEvent.target.files[0]);
                 });
             }
-        }
+        };
     }
 ]);
 
@@ -232,7 +263,7 @@ app.directive("textread", [
                     scope.textread = changeEvent.target.value;
                 });
             }
-        }
+        };
     }
 
 ]);
@@ -267,7 +298,7 @@ app.controller("chatCtrl", function ($scope, $http, $rootScope)
             username: $scope.defaultUsername,
             text: ''
         };
-    }
+    };
 
     $scope.clearMsg();
     /***
@@ -374,7 +405,7 @@ app.controller("chatCtrl", function ($scope, $http, $rootScope)
         $("#inputMessage").removeClass("error");
         $scope.clearMsg();
         $scope.loggedIn = false;
-    }
+    };
 
 });
 
@@ -417,14 +448,13 @@ app.controller("chatCtrl", function ($scope, $http, $rootScope)
         // but are hardcoded here for simplicity. See the next example for
         // tips on using AJAX.
         $scope.searchresults;
-        $scope.callRestService = function ()
-        {
+        $scope.callRestService = function () {
             $http.get('http://localhost:59596/api/SearchResult?search=' + $scope.search)
                 .then(function (response) {
                     $scope.searchresults = response.data;
                     //$scope.results.push(response);  //retrieve results and add to existing results
-                })
-        }
+                });
+        };
 
     });
 
