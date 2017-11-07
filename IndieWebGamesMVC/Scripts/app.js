@@ -246,7 +246,7 @@ app.controller("chatCtrl", function ($scope, $http, $rootScope)
       ***/
 
     //$scope.chatChannel = "indiewebgames";
-    $scope.chatChannel = "angular_chat";
+    $scope.chatChannel = "indiewebgames";
     $scope.messageLimit = 25;
     $scope.defaultUsername = $rootScope.username;
 
