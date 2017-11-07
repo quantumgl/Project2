@@ -81,7 +81,7 @@
 
                     <h1>SEARCH</h1>
                     <div ng-controller="SearchController" class="bar">
-                        <input type="text" textread="search"  ng-model="search" placeholder="Enter your search terms" />
+                        <input type="text" textread="search" ng-keydown="callRestService()" ng-model="search" placeholder="Enter your search terms" />
                         <button ng-click="callRestService()">help</button>
                         <p>{{search}}</p>
                     
