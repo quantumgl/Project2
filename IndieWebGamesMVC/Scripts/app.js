@@ -237,6 +237,8 @@ app.directive("textread", [
 
 ]);
 
+
+
 app.controller("chatCtrl", function ($scope, $http, $rootScope)
 {
     /***
@@ -438,6 +440,23 @@ app.controller("chatCtrl", function ($scope, $http, $rootScope)
         //    }
         //];
     });
+
+//app.directive("searchread", [
+//    function () {
+//        return {
+//            scope: {
+//                searchread: "="
+//            },
+//            link: function (scope, element, attributes) {
+//                element.bind("change", function (changeEvent) {
+//                    scope.searchread = changeEvent.target.value;
+//                    //scope.callRestService();
+//                });
+//            }
+//        }
+//    }
+
+//]);
 
     app.directive('myOnKeyDownCall', function ()
     {
