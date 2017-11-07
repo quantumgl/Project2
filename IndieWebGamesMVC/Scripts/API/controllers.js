@@ -1,7 +1,7 @@
 ﻿
 var servers = ["http://localhost:59596", "https://indiewebgamesapi.azurewebsites.net"];
 
-var serv = servers[0];
+var serv = servers[1];
 
 var userIconGet = function (scope, http, log) {
     http.get(serv + "/api/UserIcon/?Username=" + scope.name)
