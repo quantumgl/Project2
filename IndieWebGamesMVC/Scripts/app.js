@@ -69,7 +69,7 @@ app.controller('addUser', function ($scope, $http, $rootScope) {
 app.controller('callUsers', function ($scope, $http, $log, $rootScope) {
 
     function myCallback() {
-        if (debug == 1) {
+        if (debug === 1) {
             //refresh_status($scope, $http);
             //refresh_users($scope, $http);
         }
@@ -97,24 +97,75 @@ app.controller("profileController",
 
     function profileController($scope, $http, $rootScope) {
 
-
+        $scope.iconurl;
+        $scope.iconDataUri;
 
         $scope.loadprofile = function () {
+            $scope.username = document.getElementById("name").innerHTML;
             $rootScope.username = document.getElementById("name").innerHTML;
+            $scope.userid = document.getElementById("userid").innerHTML;
             console.log("Hello nurse");
 
-            $http.get("http://localhost/api/IndiePlayerProfiles?Username=" + $rootScope.username)
+            $rootScope.indieProfile;
+            $rootScope.authIndieProfile;
+
+            $http.get("http://localhost:59596/api/IndiePlayerProfiles?Username=" + $scope.username)
                 .then(function (response) {
                     console.log("success", response);
                     $rootScope.indieProfile = response.data;
                 },
                 function (error) {
                     console.log("error", error);
-                    //$rootScope.indieProfile = IndieProfile($rootScope.username);
+                    console.log($scope.username);
+                    $rootScope.authIndieProfile = new AuthIndiePlayerProfile($scope.username, $scope.userid);
+                    console.log($rootScope.authIndieProfile);
+                    $http.post("http://localhost:59596/api/IndiePlayerProfiles", $rootScope.authIndieProfile)
+                        .then(function (response) {
+                            $rootScope.indieProfile = response.data;
+                            $rootScope.iconurl = $rootScope.indieProfile.Iconurl;
+                        },
+                        function (error) {
+                            console.log(error);
+                        });
 
                 }
             )
         };
+
+        $scope.uploadIcon = function () {
+            var fd = new FormData();
+            var imgBlob = dataURItoBlob($scope.iconDataUri);
+            fd.append($scope.username, imgBlob);
+            $http.post(
+                'http://localhost:59596/api/upload?Username=' + $rootScope.username,
+                fd, {
+                    transformRequest: angular.identity,
+                    headers: {
+                        'Content-Type': undefined
+                    }
+                }
+            )
+                .then(function (response) {
+                    console.log('success', response);
+                    $rootScope.indieProfile.iconurl = "https://indiewebgames.blob.core.windows.net/icons/" + $rootScope.username;
+                    authViewModel = new AuthViewModel($scope.username, $scope.userid);
+                    indiePlayerProfile = $rootScope.indieProfile;
+                    authIndieProfile = { indiePlayerProfile, authViewModel };
+                    $http.put('http://localhost:59596/api/IndiePlayerProfiles/' + $rootScope.indieProfile.id, indiePlayerProfile).then(
+                        function (response) {
+                            $http.get('http://localhost:59596/api/IndiePlayerProfiles?Username=' + $rootScope.username)
+                                .then(function (response) {
+                                    $rootScope.indieProfile = response.data;
+                                    console.log("refreshed profile from server");
+                                },
+                                function (error) { })
+                        }, function (error) { }
+                    );
+                },
+                function (response) {
+                    console.log('error', response);
+                });
+        }
 
 });
 
@@ -191,9 +242,11 @@ app.controller("chatCtrl", function ($scope, $http, $rootScope)
     /***
       * Configurable global variables
       ***/
+
+    //$scope.chatChannel = "indiewebgames";
     $scope.chatChannel = "angular_chat";
     $scope.messageLimit = 25;
-    $scope.defaultUsername = $rootScope.name;
+    $scope.defaultUsername = $rootScope.username;
 
     /***
      * Static global variables

@@ -747,24 +747,17 @@ a.article, a.article:hover {
     flex: 1;
     max-height: 136px;
     background-color: #009688 !important;
-    color: white;
 }
 
 .message-list {
     flex: 1;
-    overflow: auto;
-    margin-top: 0;
-    margin-bottom: 0;
+    margin:0;
     height: 400px;
+    overflow-y: scroll;
+    padding: 0;
+    text-indent: 10px;
 }
 
-    .message-list > ul {
-        max-height: 400px;
-        margin: 0;
-        overflow-y: scroll;
-        padding: 0;
-        text-indent: 10px;
-    }
 
 .message-form .input-field input {
     border-color: #FFFFFF;
@@ -853,6 +846,8 @@ a.article, a.article:hover {
     margin-bottom: 5px;
     margin-right: 5px;
     font-style: italic;
+    margin-top: 10px;
+    margin-left:45px;
 }
 
 .collection .collection-item {
