@@ -19,13 +19,25 @@ body {
 }
 
 .navbar-inverse {
-    background: none;
+    background-color: #6677C2;
     border-color: transparent;
 }
 
-    .navbar-inverse .navbar-nav > li > a {
-        color: #9d9d9d;
+.navbar-inverse .navbar-brand:hover {
+    color: #9d9d9d;
+}
+
+    .navbar-inverse .navbar-brand {
+        color: #fff;
     }
+
+    .navbar-inverse .navbar-nav > li > a {
+        color: #fff;
+    }
+
+        .navbar-inverse .navbar-nav > li > a:hover {
+            color: #9d9d9d;
+        }
 
 footer {
     color: #9d9d9d;
@@ -585,7 +597,7 @@ a.article, a.article:hover {
     padding-right: 60px;
     padding-left: 60px;
     width:auto;
-    height:700px;
+    height:800px;
 }
 .full-width {
     float: left;
@@ -611,10 +623,6 @@ a.article, a.article:hover {
     border-radius: 50%;
 }
 
-.form-control {
-    padding: 10px 50px;
-}
-
 .form-input {
     height: 50px;
     border-radius: 0px;
@@ -624,7 +632,7 @@ a.article, a.article:hover {
 .Profile-input-file {
     height: 210px;
     width: 200px;
-    left: 40%;
+    left: 35%;
     position: absolute;
     top: -10px;
     z-index: 999;
