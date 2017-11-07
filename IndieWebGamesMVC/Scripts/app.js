@@ -398,6 +398,8 @@ app.controller("chatCtrl", function ($scope, $http, $rootScope)
     }
 
 });
+
+    // SEARCH FEATURE *still not working as intended*
     app.filter('searchFor', function () {
 
         // All filters must return a function. The first parameter
@@ -430,49 +432,47 @@ app.controller("chatCtrl", function ($scope, $http, $rootScope)
 
     // The controller
 
-    app.controller('SearchController', function ($scope)
+    app.controller('SearchController', function ($scope, $rootScope)
     {
-
         // The data model. These items would normally be requested via AJAX,
         // but are hardcoded here for simplicity. See the next example for
         // tips on using AJAX.
+        $scope.callRestService = function ()
+        {
+            $http.get('http://localhost:59596/api/SearchResult?search=' + $scope.username)
+                .then(function (response) {
+                    $rootScope.indieprofile = response.data;
+                    //$scope.results.push(response);  //retrieve results and add to existing results
+                })
+        }
 
-        $scope.items = [
+        //$scope.online = function (name)
+        //{
+        //    $rootScope.name = name;
+        //    //$http.get("
+        //}
+
+        //$scope.items = [
+        //    {
+        //        url: 'http://indiewebgamesapi.azurewebsites.net/api/Users?UserName=" + name',
+        //        title: '$scope.name',
+        //        image: 'http://www.tutorialspoint.com/android/images/android-mini-logo.jpg'
+        //    }
+        //];
+    });
+
+    app.directive('myOnKeyDownCall', function ()
+    {
+        return function (scope, element, attrs)
+        {
+            element.bind("keydown keypress", function (event)
             {
-                url: 'http://www.tutorialspoint.com/android/',
-                title: 'Android tutorials',
-                image: 'http://www.tutorialspoint.com/android/images/android-mini-logo.jpg'
-            },
-            {
-                url: 'http://www.tutorialspoint.com/angularjs/',
-                title: 'AngularJs Tutorials ',
-                image: 'http://www.tutorialspoint.com/angularjs/images/angularjs-mini-logo.jpg'
-            },
-            {
-                url: 'http://www.tutorialspoint.com/html5/',
-                title: 'HTML5 Tutorials',
-                image: 'http://www.tutorialspoint.com/html5/images/html5-mini-logo.jpg'
-            },
-            {
-                url: 'http://www.tutorialspoint.com/css/',
-                title: 'CSS Tutorials',
-                image: 'http://www.tutorialspoint.com/css/images/css-mini-logo.jpg'
-            },
-            {
-                url: 'http://www.tutorialspoint.com/java/',
-                title: 'Java Tutorials',
-                image: 'http://www.tutorialspoint.com/java/images/java-mini-logo.jpg'
-            },
-            {
-                url: 'http://www.tutorialspoint.com/joomla/',
-                title: 'Joomla Tutorials',
-                image: 'http://www.tutorialspoint.com/joomla/images/joomla-mini-logo.jpg'
-            },
-            {
-                url: 'http://www.tutorialspoint.com/html/',
-                title: 'HTML Tutorials ',
-                image: 'http://www.tutorialspoint.com/html/images/html-mini-logo.jpg'
-            }
-        ];
+                scope.$apply(function ()
+                {
+                    scope.$eval(attrs.ngEnter);
+                });
+                event.preventDefault();
+            });
+        };
     });
 
