@@ -47,21 +47,19 @@
     <div class="container body-content" style="padding:20px;">
         <div class="row">
             <div class="col-lg-12">
-
                 <!--PROFILE PANEL-->
                 <div class="jumbotron" ng-show="panel.isSelected(1)">
                     <div class="custom-form" ng-controller="profileController" ng-init="loadprofile()">
                         <div class="text-center bg-form">
                             <div class="img-section">
-                                <img src="{{indieProfile.iconurl}}" width="200" height="200" class="imgCircle" alt="Profile picture">
-                                <!--<img src="https://robohash.org/user?set=set2&size=200x200" width="200" height="200" class="imgCircle" alt="Profile picture">-->
+                                <img src="{{indieProfile.iconurl}}" width="150" height="150" class="imgCircle" alt="Profile picture">
                                 <div class="col-lg-12">
                                     <br />
                                     <h5>{{username}}</h5>
                                 </div>
                             </div>
                             <!--<input type="file" id="image-input" onchange="readURL(this);" accept="image/*" class="form-control form-input Profile-input-file">-->
-                            <input type="file" onchange="readURL(this);"  id="image-input" fileread="iconDataUri" accept="image/*" class="form-control form-input Profile-input-file">
+                            <input type="file" id="image-input" fileread="iconDataUri" accept="image/*" class="form-control form-input Profile-input-file">
                         </div>
 
                         <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
@@ -93,7 +91,16 @@
                                 </div>
 
                                 <div class="tab-pane fade in" id="tab3">
-                                    <h3>This is tab 3</h3>
+                                    <ul class="list-group" id="contact-list">
+                                        <li class="list-group-item">
+                                            <div class="col-xs-12 col-sm-3">
+                                                <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="Scott Stevens" class="img-responsive img-circle" />
+                                            </div>
+                                            <div class="col-xs-12 col-sm-9">
+                                                <strong>Scott Stevens</strong><br />
+                                            </div>
+                                            <div class="clearfix"></div>
+                                    </ul>
                                 </div>
                             </div>
                         <br />
@@ -101,32 +108,28 @@
                 </div>
 
                 <!--SEARCH PANEL-->
-
                 <div class="jumbotron"  ng-show="panel.isSelected(2)">
 
                     <h1>THIS IS PANEL 2</h1>
                     <div ng-controller="SearchController" class="bar">
                         <!-- Create a binding between the searchString model and the text field -->
                         <input type="text" ng-model="searchString" placeholder="Enter your search terms" />
+                        <ul>
+                            <li ng-repeat="i in users | filter:searchString">
+                                <a href="{{i.url}}"><img ng-src="{{i.image}}" /></a>
+                                <p>{{i.title}}</p>
+                            </li>
+                        </ul>
+
                     </div>
 
-                    <ul>
-                        <!-- Render a li element for every entry in the items array. Notice
-             the custom search filter "searchFor". It takes the value of the
-             searchString model as an argument.
-         -->
-                        <li ng-repeat="i in items | searchFor:searchString">
-                            <a href="{{i.url}}"><img ng-src="{{i.image}}" /></a>
-                            <p>{{i.title}}</p>
-                        </li>
-                    </ul>
-                    <div/>
-                </div>
-                </div>
+                   
+                    </div>
+
 
                 <!--CHAT PANEL-->
                 <div class="jumbotron" ng-show="panel.isSelected(3)">
-                    <div class="custom-form" style="height:auto" ng-controller="chatCtrl">
+                    <div class="custom-form" style="height:auto; width:700px;" ng-controller="chatCtrl">
                         <div class="message-container">
                             <div class="online-user-list">
                                 <div class="online-users-number valign-wrapper">
@@ -137,9 +140,9 @@
                                 </div>
                             </div>
 
-                            <div>
+                            <div id="messages">
                                 <ul class="message-list collection">
-                                    <li class="collection-item message-item" ng-repeat="chat in chatMessages">
+                                    <li class="collection-item message-item" id="messages" ng-repeat="chat in chatMessages">
                                         <strong>#{{chat.username}}</strong>
                                         <em style="float:right; padding-right:15px;">{{chat.date | date:"MM/dd/yyyy 'at' h:mma"}}</em>
                                         <br /><br /> <p>{{chat.text}}</p>
@@ -154,7 +157,7 @@
                                             <span class="chip" style="float:left">
                                                 #{{username}}
                                             </span>
-                                            <div class="col-sm-8" style="padding-top:10px;">
+                                            <div class="col-sm-6" style="padding-top:10px;">
                                                 <input class="form-control" ng-model="message.text" type="text" placeholder="Type your message">
                                             </div>
 

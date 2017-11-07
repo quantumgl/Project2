@@ -23,9 +23,21 @@ body {
     border-color: transparent;
 }
 
+.navbar-inverse .navbar-brand:hover {
+    color: #9d9d9d;
+}
+
+    .navbar-inverse .navbar-brand {
+        color: #fff;
+    }
+
     .navbar-inverse .navbar-nav > li > a {
         color: #fff;
     }
+
+        .navbar-inverse .navbar-nav > li > a:hover {
+            color: #9d9d9d;
+        }
 
 footer {
     color: #9d9d9d;
@@ -585,7 +597,7 @@ a.article, a.article:hover {
     padding-right: 60px;
     padding-left: 60px;
     width:auto;
-    height:1000px;
+    height:800px;
 }
 .full-width {
     float: left;
@@ -611,10 +623,6 @@ a.article, a.article:hover {
     border-radius: 50%;
 }
 
-.form-control {
-    padding: 10px 50px;
-}
-
 .form-input {
     height: 50px;
     border-radius: 0px;
@@ -624,7 +632,7 @@ a.article, a.article:hover {
 .Profile-input-file {
     height: 210px;
     width: 200px;
-    left: 40%;
+    left: 35%;
     position: absolute;
     top: -10px;
     z-index: 999;
@@ -689,7 +697,7 @@ a.article, a.article:hover {
     border-radius: 20px;
     box-shadow: 0 0 16px #1440bf;
     overflow: hidden;
-    height: 900px;
+    height: 700px;
 }
 
 .img-section {
@@ -738,6 +746,7 @@ a.article, a.article:hover {
     display: flex;
     border-radius: 2px 2px;
     flex-direction: column;
+    width:700px;
 }
 
 .jumbotron p {
