@@ -106,6 +106,8 @@ app.controller("profileController",
             $scope.userid = document.getElementById("userid").innerHTML;
             console.log("Hello nurse");
 
+            $scope.iconurl;
+
             $rootScope.indieProfile;
             $rootScope.authIndieProfile;
 
@@ -113,17 +115,23 @@ app.controller("profileController",
                 .then(function (response) {
                     console.log("success", response);
                     $rootScope.indieProfile = response.data;
+                    $scope.iconurl = $rootScope.indieProfile.iconurl
                 },
                 function (error) {
-                    console.log("error", error);
+                    console.log("Profile does not exist: creating");
                     console.log($scope.username);
                     $rootScope.authIndieProfile = new AuthIndiePlayerProfile($scope.username, $scope.userid);
                     console.log($rootScope.authIndieProfile);
+
                     $http.post("http://localhost:59596/api/IndiePlayerProfiles", $rootScope.authIndieProfile)
+
                         .then(function (response) {
                             $rootScope.indieProfile = response.data;
-                            $rootScope.iconurl = $rootScope.indieProfile.Iconurl;
+                            $scope.iconurl = $rootScope.indieProfile.iconurl
+                            console.log(response.data);
+                            //$rootScope.iconurl = $rootScope.indieProfile.Iconurl;
                         },
+
                         function (error) {
                             console.log(error);
                         });
@@ -133,6 +141,7 @@ app.controller("profileController",
         };
 
         $scope.uploadIcon = function () {
+            
             var fd = new FormData();
             var imgBlob = dataURItoBlob($scope.iconDataUri);
             fd.append($scope.username, imgBlob);
@@ -147,7 +156,14 @@ app.controller("profileController",
             )
                 .then(function (response) {
                     console.log('success', response);
-                    $rootScope.indieProfile.iconurl = "https://indiewebgames.blob.core.windows.net/icons/" + $rootScope.username;
+
+                    $scope.iconurl = 'https://i.ytimg.com/vi/XIMLoLxmTDw/hqdefault.jpg';
+                    //document.getElementById("profilepic").hide().show
+                    $('#profilepic').hide();
+                    setTimeout(function () {
+                        $('#profilepic').show();
+                    }, 0);
+
                     authViewModel = new AuthViewModel($scope.username, $scope.userid);
                     indiePlayerProfile = $rootScope.indieProfile;
                     authIndieProfile = { indiePlayerProfile, authViewModel };
@@ -155,7 +171,14 @@ app.controller("profileController",
                         function (response) {
                             $http.get('http://localhost:59596/api/IndiePlayerProfiles?Username=' + $rootScope.username)
                                 .then(function (response) {
-                                    $rootScope.indieProfile = response.data;
+                                    $rootScope.indieProfile = response.data;                                                                       
+                                    
+                                    $rootScope.indieProfile.iconurl = "https://indiewebgames.blob.core.windows.net/icons/" + $rootScope.username;
+                                    $scope.iconurl = $rootScope.indieProfile.iconurl;
+                                    $('#profilepic').hide();
+                                    setTimeout(function () {
+                                        $('#profilepic').show();
+                                    }, 1000);
                                     console.log("refreshed profile from server");
                                 },
                                 function (error) { })
