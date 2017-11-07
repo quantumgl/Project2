@@ -411,22 +411,45 @@ app.controller("chatCtrl", function ($scope, $http, $rootScope)
 
     app.controller('SearchController', function ($scope, $rootScope)
     {
-
         // The data model. These items would normally be requested via AJAX,
         // but are hardcoded here for simplicity. See the next example for
         // tips on using AJAX.
-        $scope.online = function (name) {
-
-            $rootScope.name = name;
-            //$http.get("
+        $scope.callRestService = function ()
+        {
+            $http.get('http://localhost:59596/api/SearchResult?search=' + $scope.username)
+                .then(function (response) {
+                    $rootScope.indieprofile = response.data;
+                    //$scope.results.push(response);  //retrieve results and add to existing results
+                })
         }
 
-        $scope.items = [
+        //$scope.online = function (name)
+        //{
+        //    $rootScope.name = name;
+        //    //$http.get("
+        //}
+
+        //$scope.items = [
+        //    {
+        //        url: 'http://indiewebgamesapi.azurewebsites.net/api/Users?UserName=" + name',
+        //        title: '$scope.name',
+        //        image: 'http://www.tutorialspoint.com/android/images/android-mini-logo.jpg'
+        //    }
+        //];
+    });
+
+    app.directive('myOnKeyDownCall', function ()
+    {
+        return function (scope, element, attrs)
+        {
+            element.bind("keydown keypress", function (event)
             {
-                url: 'http://indiewebgamesapi.azurewebsites.net/api/Users?UserName=" + name',
-                title: '$scope.name',
-                image: 'http://www.tutorialspoint.com/android/images/android-mini-logo.jpg'
-            }
-        ];
+                scope.$apply(function ()
+                {
+                    scope.$eval(attrs.ngEnter);
+                });
+                event.preventDefault();
+            });
+        };
     });
 
