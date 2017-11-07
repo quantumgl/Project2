@@ -80,7 +80,7 @@
                 <div class="jumbotron"  ng-show="panel.isSelected(2)">
                     <div ng-controller="SearchController" class="bar">
                         <div class="custom-form">
-                            <input type="text" class="form-control" ng-keydown="callRestService()" textread="search" ng-model="search" placeholder="Enter your search terms" />
+                            <input type="text" class="form-control" ng-keyup="callRestService()" textread="search" ng-model="search" placeholder="Enter your search terms" />
                             <button ng-click="callRestService()">help</button>
 
 
