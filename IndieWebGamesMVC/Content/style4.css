@@ -692,6 +692,12 @@ a.article, a.article:hover {
     margin-top: 0px;
 }
 
+.search{
+    width:50%;
+    margin-top:15px;
+    
+}
+
 
 .custom-form {
     border-radius: 20px;
